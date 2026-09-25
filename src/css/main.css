@@ -2,124 +2,154 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ─── Base ────────────────────────────────────────────────── */
+/* ─── Base ──────────────────────────────────────────────── */
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
+  html { scroll-behavior: smooth; }
 
   body {
-    @apply bg-brand-bg text-white font-sans antialiased;
-  }
-
-  h1, h2, h3 {
-    @apply font-display;
+    @apply bg-white text-brand-off-black font-sans antialiased;
   }
 
   *:focus-visible {
-    @apply outline-none ring-2 ring-brand-gold ring-offset-2 ring-offset-brand-bg;
+    @apply outline-none ring-2 ring-brand-green ring-offset-2 ring-offset-white;
   }
 }
 
 /* ─── Components ─────────────────────────────────────────── */
 @layer components {
 
-  /* Buttons */
-  .btn-primary {
+  /* ── Buttons ── */
+
+  /* Primary CTA — coral red, used everywhere */
+  .btn-cta {
     @apply inline-flex items-center justify-center gap-2
-           px-7 py-3.5 rounded
-           bg-brand-gold text-brand-bg font-sans font-semibold text-sm tracking-wide
+           px-8 py-3.5
+           bg-brand-red text-white
+           font-display font-semibold text-sm tracking-widest uppercase
            transition-all duration-200
-           hover:bg-brand-gold-light hover:shadow-[0_0_24px_rgba(201,162,39,0.45)]
-           focus-visible:ring-brand-gold
+           hover:bg-brand-red-dark
+           active:scale-[0.98]
+           focus-visible:ring-brand-red;
+  }
+
+  /* Ghost outline variant for dark sections */
+  .btn-outline-light {
+    @apply inline-flex items-center justify-center gap-2
+           px-8 py-3.5
+           border-2 border-white text-white
+           font-display font-semibold text-sm tracking-widest uppercase
+           transition-all duration-200
+           hover:bg-white hover:text-brand-off-black
            active:scale-[0.98];
   }
 
-  .btn-outline {
-    @apply inline-flex items-center justify-center gap-2
-           px-7 py-3.5 rounded
-           border border-brand-gold text-brand-gold font-sans font-semibold text-sm tracking-wide
-           transition-all duration-200
-           hover:bg-brand-gold hover:text-brand-bg hover:shadow-[0_0_24px_rgba(201,162,39,0.35)]
-           focus-visible:ring-brand-gold
-           active:scale-[0.98];
+  /* ── Nav ── */
+  .nav-item {
+    @apply text-sm font-display font-medium tracking-widest uppercase
+           text-white/80 transition-colors duration-200 hover:text-white
+           flex items-center gap-1;
   }
 
-  .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2
-           px-5 py-2.5
-           text-brand-muted font-sans text-sm
-           transition-colors duration-200
-           hover:text-white;
+  /* ── Section typography ── */
+
+  .section-eyebrow {
+    @apply block text-xs font-display font-medium tracking-[0.25em] uppercase
+           text-brand-green mb-3;
   }
 
-  /* Product card */
-  .product-card {
-    @apply bg-brand-surface rounded-lg border border-brand-border overflow-hidden
-           transition-all duration-300
-           hover:border-brand-gold/40 hover:shadow-[0_4px_32px_rgba(201,162,39,0.12)]
+  .section-eyebrow-light {
+    @apply block text-xs font-display font-medium tracking-[0.25em] uppercase
+           text-white/60 mb-3;
+  }
+
+  /* H2 on light bg */
+  .heading-dark {
+    @apply font-display font-semibold text-brand-off-black leading-none tracking-tight
+           text-4xl md:text-5xl lg:text-6xl uppercase;
+  }
+
+  /* H2 on dark bg */
+  .heading-light {
+    @apply font-display font-semibold text-white leading-none tracking-tight
+           text-4xl md:text-5xl lg:text-6xl uppercase;
+  }
+
+  /* H3 sub-section heading on light bg */
+  .subheading-dark {
+    @apply font-display font-semibold text-brand-off-black text-xl md:text-2xl uppercase tracking-wide;
+  }
+
+  /* ── Category nav buttons (hero) ── */
+  .cat-btn {
+    @apply flex flex-col items-center justify-center gap-2
+           w-28 sm:w-32 py-4
+           bg-white text-brand-off-black
+           border-r border-zinc-200 last:border-r-0
+           transition-colors duration-150
+           hover:bg-zinc-100 cursor-pointer select-none;
+  }
+
+  .cat-btn.active,
+  .cat-btn[aria-selected="true"] {
+    @apply bg-brand-green text-white;
+  }
+
+  .cat-btn-icon {
+    @apply w-8 h-8;
+  }
+
+  .cat-btn-label {
+    @apply text-xs font-display font-semibold tracking-widest uppercase;
+  }
+
+  /* ── Feature cards (on white bg) ── */
+  .feature-block {
+    @apply flex flex-col gap-4 pb-10 border-b border-zinc-100 last:border-0 last:pb-0;
+  }
+
+  .feature-icon-green {
+    @apply w-12 h-12 text-brand-green;
+  }
+
+  .feature-title {
+    @apply font-display font-semibold text-brand-off-black text-lg tracking-wide uppercase;
+  }
+
+  .feature-body {
+    @apply text-brand-muted text-sm leading-relaxed;
+  }
+
+  /* ── Product cards (dark style for dark sections) ── */
+  .product-card-dark {
+    @apply bg-zinc-900 border border-zinc-800 overflow-hidden
+           transition-all duration-300 cursor-pointer
+           hover:border-brand-green/60 hover:shadow-[0_0_24px_rgba(74,124,89,0.2)]
            hover:-translate-y-0.5;
   }
 
-  /* Section labels */
-  .section-label {
-    @apply inline-block text-brand-gold font-sans text-xs font-semibold tracking-widest uppercase mb-3;
-  }
-
-  /* Section heading */
-  .section-heading {
-    @apply text-3xl md:text-4xl lg:text-5xl font-display font-semibold text-white leading-tight;
-  }
-
-  /* Feature icon container */
-  .feature-icon {
-    @apply w-12 h-12 rounded-lg bg-brand-gold/10 border border-brand-gold/25
-           flex items-center justify-center mb-4 text-brand-gold;
-  }
-
-  /* Nav link */
-  .nav-link {
-    @apply text-sm font-sans text-brand-muted
-           transition-colors duration-200
-           hover:text-white
-           relative after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-brand-gold
-           after:transition-[width] after:duration-200 hover:after:w-full;
-  }
-
-  /* Price display */
-  .price-range {
-    @apply text-brand-gold font-semibold text-sm;
-  }
-
-  /* Card gradient thumbnails */
+  /* Product thumbnails (CSS gradient placeholders) */
   .thumb-kits {
-    @apply bg-gradient-to-br from-amber-900/60 via-yellow-900/40 to-brand-surface;
+    @apply bg-gradient-to-br from-amber-900/70 via-stone-900/60 to-zinc-900;
   }
   .thumb-tiles {
-    @apply bg-gradient-to-br from-indigo-900/60 via-purple-900/40 to-brand-surface;
+    @apply bg-gradient-to-br from-slate-800/80 via-blue-900/40 to-zinc-900;
   }
   .thumb-accessories {
-    @apply bg-gradient-to-br from-emerald-900/60 via-teal-900/40 to-brand-surface;
-  }
-}
-
-/* ─── Utilities ──────────────────────────────────────────── */
-@layer utilities {
-
-  /* Gradient text */
-  .text-gradient {
-    @apply bg-clip-text text-transparent
-           bg-gradient-to-r from-brand-gold-light to-brand-gold;
+    @apply bg-gradient-to-br from-emerald-900/60 via-teal-900/40 to-zinc-900;
   }
 
-  /* Divider with fade */
-  .divider {
-    @apply border-t border-brand-border;
+  /* ── Watercolor / organic smoke divider ── */
+  .smoke-divider {
+    @apply w-full overflow-hidden leading-none pointer-events-none;
+    line-height: 0;
   }
 
-  /* Scrollbar styling */
-  .scrollbar-thin {
-    scrollbar-width: thin;
-    scrollbar-color: theme('colors.brand.border') transparent;
+  /* ── Body copy variants ── */
+  .body-dark {
+    @apply text-zinc-600 text-base leading-relaxed;
+  }
+
+  .body-light {
+    @apply text-white/70 text-base leading-relaxed;
   }
 }

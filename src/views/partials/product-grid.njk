@@ -1,42 +1,48 @@
 {% if products.length %}
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
     {% for p in products %}
-      <article class="product-card group" aria-label="{{ p.name }}">
+      <article class="group border border-zinc-100 overflow-hidden
+                      transition-all duration-300 bg-white
+                      hover:border-brand-green/40 hover:shadow-[0_4px_24px_rgba(74,124,89,0.12)]
+                      hover:-translate-y-0.5"
+               aria-label="{{ p.name }}">
 
-        <!-- Thumbnail area -->
-        <div class="relative h-48 {{ p.thumb }} flex items-end p-4 overflow-hidden">
-          <!-- Category badge -->
+        {# Gradient thumbnail — TODO: replace with real product photography #}
+        <div class="relative h-44 {{ p.thumb }} overflow-hidden">
           {% if p.badge %}
-            <span class="absolute top-3 right-3 px-2 py-0.5 rounded-sm
-                         bg-brand-gold text-brand-bg text-xs font-sans font-semibold tracking-wide">
+            <span class="absolute top-3 left-3 px-2 py-0.5
+                         bg-brand-red text-white text-[10px]
+                         font-display font-semibold tracking-widest uppercase">
               {{ p.badge }}
             </span>
           {% endif %}
-
-          <!-- Category pill -->
-          <span class="px-2.5 py-1 rounded-sm bg-black/50 text-brand-muted text-xs font-sans capitalize">
+          <span class="absolute bottom-2 left-3 px-2 py-0.5
+                       bg-black/40 text-white/70 text-[9px] font-display tracking-widest uppercase">
             {{ p.category }}
           </span>
         </div>
 
-        <!-- Card body -->
         <div class="p-4">
-          <h3 class="text-sm font-sans font-semibold text-white leading-snug mb-1 group-hover:text-brand-gold-light transition-colors">
+          <h3 class="text-sm font-display font-semibold text-brand-off-black tracking-wide uppercase
+                     leading-snug mb-1 group-hover:text-brand-green transition-colors">
             {{ p.name }}
           </h3>
 
           {% if p.description %}
-            <p class="text-xs text-brand-muted leading-relaxed mb-3 line-clamp-2">{{ p.description }}</p>
+            <p class="text-[11px] text-zinc-500 leading-relaxed mb-3 line-clamp-2">
+              {{ p.description }}
+            </p>
           {% endif %}
 
-          <div class="flex items-center justify-between mt-3">
-            <span class="price-range">{{ p.priceLabel }}</span>
-
-            {# TODO: Replace href with Hostinger checkout URL when API is wired #}
+          <div class="flex items-center justify-between pt-3 border-t border-zinc-100">
+            <span class="text-brand-green font-display font-semibold text-sm tracking-wide">
+              {{ p.priceLabel }}
+            </span>
+            {# TODO: Replace href with Hostinger checkout URL #}
             <a href="{{ p.slug or '#' }}"
-               class="text-xs font-sans font-medium text-brand-gold hover:text-brand-gold-light
-                      border border-brand-gold/40 hover:border-brand-gold/80
-                      px-3 py-1.5 rounded transition-all duration-200"
+               class="text-[10px] font-display font-semibold tracking-widest uppercase
+                      text-zinc-400 border border-zinc-200 px-3 py-1.5
+                      hover:border-brand-red hover:text-brand-red transition-colors"
                aria-label="View {{ p.name }}">
               View →
             </a>
@@ -46,5 +52,5 @@
     {% endfor %}
   </div>
 {% else %}
-  <p class="text-brand-muted text-center py-10">No products found.</p>
+  <p class="text-zinc-400 text-center py-10 font-sans text-sm">No products found.</p>
 {% endif %}

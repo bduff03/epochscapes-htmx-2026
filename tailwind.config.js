@@ -4,54 +4,67 @@ module.exports = {
     './src/views/**/*.njk',
     './src/public/js/**/*.js',
   ],
+  safelist: [
+    // Dynamic product thumbnail gradient classes
+    'thumb-kits',
+    'thumb-tiles',
+    'thumb-accessories',
+    // Dynamic product accent line classes
+    'accent-kits',
+    'accent-tiles',
+    'accent-accessories',
+  ],
   theme: {
     extend: {
       colors: {
         brand: {
-          bg:         '#0c0c14',
-          surface:    '#141420',
-          'surface-2': '#1c1c2e',
-          border:     '#2d2d48',
-          gold:       '#c9a227',
-          'gold-light': '#e4b94a',
-          'gold-dark':  '#9a7a1e',
-          muted:      '#8888aa',
+          green:       '#4a7c59',
+          'green-light': '#5b9469',
+          'green-dark':  '#3a6148',
+          red:         '#e74c3c',
+          'red-dark':  '#c0392b',
+          black:       '#0a0a0a',
+          'off-black': '#111111',
+          muted:       '#666666',
+          'muted-light': 'rgba(255,255,255,0.65)',
         },
       },
       fontFamily: {
-        display: ['Cinzel', 'Georgia', 'serif'],
+        display: ['Oswald', 'Barlow Condensed', 'Arial Narrow', 'sans-serif'],
         sans:    ['Inter', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
-        'tile-pattern': `
-          linear-gradient(rgba(201,162,39,0.08) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(201,162,39,0.08) 1px, transparent 1px)
+        'hero-overlay': `
+          linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.55) 0%,
+            rgba(0,0,0,0.35) 40%,
+            rgba(0,0,0,0.70) 100%
+          )
         `,
-        'hero-glow': `
-          radial-gradient(ellipse at 20% 50%, rgba(201,162,39,0.18) 0%, transparent 60%),
-          radial-gradient(ellipse at 80% 20%, rgba(100,60,160,0.12) 0%, transparent 50%),
-          radial-gradient(ellipse at 60% 80%, rgba(30,20,60,0.8) 0%, transparent 50%)
+        'hero-atmosphere': `
+          radial-gradient(ellipse at 65% 40%, rgba(80,30,120,0.35) 0%, transparent 55%),
+          radial-gradient(ellipse at 30% 80%, rgba(20,60,30,0.25) 0%, transparent 45%),
+          linear-gradient(180deg, #0a0a0a 0%, #1a0a1e 50%, #0a0a0a 100%)
         `,
-      },
-      backgroundSize: {
-        'tile': '48px 48px',
+        'section-smoke': `
+          linear-gradient(180deg, #0a0a0a 0%, #0a0a0a 60%, transparent 100%)
+        `,
+        'join-bg': `
+          radial-gradient(ellipse at 50% 100%, rgba(60,30,90,0.6) 0%, transparent 60%),
+          linear-gradient(180deg, #0a0a0a 0%, #0d0818 60%, #0a0a0a 100%)
+        `,
       },
       animation: {
         'fade-up': 'fadeUp 0.5s ease-out both',
       },
       keyframes: {
         fadeUp: {
-          from: { opacity: '0', transform: 'translateY(20px)' },
+          from: { opacity: '0', transform: 'translateY(16px)' },
           to:   { opacity: '1', transform: 'translateY(0)' },
         },
       },
     },
   },
-  safelist: [
-    // Dynamically assigned product thumbnail gradient classes
-    'thumb-kits',
-    'thumb-tiles',
-    'thumb-accessories',
-  ],
   plugins: [],
 };
