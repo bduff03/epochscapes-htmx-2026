@@ -8,7 +8,7 @@
 ═══════════════════════════════════════════════════════ #}
 <section
   id="hero"
-  class="relative min-h-screen flex flex-col justify-end overflow-hidden bg-brand-black"
+  class="relative min-h-screen flex flex-col justify-end overflow-hidden bg-[#000000]"
   aria-label="Hero"
 >
   {#
@@ -26,18 +26,19 @@
        aria-hidden="true"></div>
 
   <!-- Bottom fade -->
-  <div class="absolute bottom-0 inset-x-0 h-48 bg-gradient-to-t from-brand-black to-transparent"
+  <div class="absolute bottom-0 inset-x-0 h-48 bg-gradient-to-t from-[#000000] to-transparent"
        aria-hidden="true"></div>
 
   <!-- Hero copy (left-aligned, above fold) -->
   <div class="relative z-10 flex-1 flex items-center">
-    <div class="mx-auto w-full max-w-7xl px-5 sm:px-8 py-24 pt-40">
+    <div class="mx-auto w-full max-w-container px-5 sm:px-8 py-24 pt-40">
       <div class="max-w-lg">
 
         <p class="section-eyebrow-light mb-4">Epoch Possibilities LLC</p>
 
-        <h1 class="font-display font-bold text-white uppercase leading-none tracking-tight
-                   text-5xl sm:text-6xl lg:text-7xl mb-5">
+        <h1 class="font-sans font-black text-white uppercase
+                   leading-[1.05] tracking-[-0.02em]
+                   text-[2.75rem] sm:text-[3.5rem] lg:text-[3.75rem] mb-6">
           Build Your Next<br />Great Adventure
         </h1>
 
@@ -57,7 +58,7 @@
   </div>
 
   {# ── Category navigation buttons ───────────────────── #}
-  <div class="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-8 pb-0">
+  <div class="relative z-10 mx-auto w-full max-w-container px-5 sm:px-8 pb-0">
     <div class="flex justify-start sm:justify-center overflow-x-auto scrollbar-thin pb-0">
 
       {#
@@ -137,17 +138,17 @@
    FEATURES  — white background, 2-col layout
    "Landscapes as Diverse as Your Imagination"
 ═══════════════════════════════════════════════════════ #}
-<section id="features" class="bg-white py-16 sm:py-24" aria-label="Key features">
-  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+<section id="features" class="bg-white py-20 sm:py-28" aria-label="Key features">
+  <div class="mx-auto max-w-container px-5 sm:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
 
       <!-- LEFT: Headline + body + CTA + illustration -->
       <div>
-        <h2 class="heading-dark text-3xl sm:text-4xl lg:text-5xl mb-6 leading-tight">
+        <h2 class="heading-dark mb-7 leading-tight">
           Landscapes as Diverse<br />as Your Imagination
         </h2>
 
-        <p class="body-dark mb-8">
+        <p class="body-dark mb-8 max-w-[520px]">
           Epochscapes is an intuitive and versatile TTRPG terrain that allows any dungeon master
           to quickly create their battle map and scene before their players' eyes.
           Bring your setting into reality.
@@ -201,11 +202,11 @@
         </div>
       </div>
 
-      <!-- RIGHT: 3 feature blocks with green icons -->
-      <div class="flex flex-col gap-10 pt-2">
+      <!-- RIGHT: 3 feature blocks with green icons — Figma: ~60px vertical gap between blocks -->
+      <div class="flex flex-col divide-y divide-zinc-100 pt-2">
 
         <!-- Double-Sided Tiles -->
-        <div class="feature-block">
+        <div class="feature-block py-9 first:pt-0 last:pb-0">
           <svg class="feature-icon-green" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 48 48" aria-hidden="true">
             <!-- Layered squares representing double-sided tile -->
             <rect x="6"  y="6"  width="16" height="16" rx="2"/>
@@ -224,7 +225,7 @@
         </div>
 
         <!-- Magnetic Connection -->
-        <div class="feature-block">
+        <div class="feature-block py-9">
           <svg class="feature-icon-green" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 48 48" aria-hidden="true">
             <!-- Horseshoe magnet -->
             <path d="M8 8 h6 v22 a10 10 0 0 0 20 0 V8 h6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -241,7 +242,7 @@
         </div>
 
         <!-- Modular Terrain -->
-        <div class="feature-block">
+        <div class="feature-block py-9 last:pb-0">
           <svg class="feature-icon-green" fill="currentColor" viewBox="0 0 48 48" aria-hidden="true">
             <!-- Mountain / triangle shapes -->
             <polygon points="24,4 44,40 4,40" fill-opacity="0.9"/>
@@ -277,14 +278,14 @@
    KITS  — black background, product card row
    "Explore Our Kits"
 ═══════════════════════════════════════════════════════ #}
-<section id="kits" class="bg-brand-black py-16 sm:py-24" aria-label="Explore kits">
-  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+<section id="kits" class="bg-[#000000] py-20 sm:py-28" aria-label="Explore kits">
+  <div class="mx-auto max-w-container px-5 sm:px-8">
 
     <!-- Section header row -->
     <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
       <div>
         <span class="section-eyebrow-light">Themed Packages</span>
-        <h2 class="heading-light text-4xl sm:text-5xl">Explore Our Kits</h2>
+        <h2 class="heading-light">Explore Our Kits</h2>
       </div>
       <a href="/#kits" class="btn-cta shrink-0 text-xs">Shop All Kits</a>
     </div>
@@ -344,7 +345,7 @@
 {# ═══════════════════════════════════════════════════════
    Smoke divider — black → white
 ═══════════════════════════════════════════════════════ #}
-<div class="bg-brand-black smoke-divider -mb-px" aria-hidden="true">
+<div class="bg-[#000000] smoke-divider -mb-px" aria-hidden="true">
   <svg viewBox="0 0 1440 60" preserveAspectRatio="none" class="w-full block" style="height:60px;">
     <path d="M0,0 C180,55 360,8 600,38 C780,60 960,10 1140,36 C1280,54 1380,18 1440,0 L1440,60 L0,60 Z"
           fill="white"/>
@@ -356,13 +357,13 @@
    BUILD & CHANGE  — white background
    "Insanely Intuitive to Build & Change" + "Modular & Versatile"
 ═══════════════════════════════════════════════════════ #}
-<section class="bg-white py-16 sm:py-24" aria-label="How it works">
-  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+<section class="bg-white py-20 sm:py-28" aria-label="How it works">
+  <div class="mx-auto max-w-container px-5 sm:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
       <!-- Text side -->
       <div>
-        <h2 class="heading-dark text-3xl sm:text-4xl lg:text-5xl mb-6 leading-tight">
+        <h2 class="heading-dark mb-6 leading-tight">
           Insanely Intuitive<br />to Build &amp; Change
         </h2>
         <p class="body-dark mb-6">
@@ -375,8 +376,7 @@
           Make unbounded arenas that befit their miniatures.
         </p>
 
-        <h3 class="subheading-dark mb-4">Modular &amp; Versatile</h3>
-        <p class="body-dark mb-8">
+        <h3 class="subheading-dark mb-4">Modular &amp; Versatile</h3>        <p class="body-dark mb-8">
           Keep your players highly engaged with Epoch Tile's detailed custom pieces while building
           a tabletop fantasy world from your imagination.
         </p>
@@ -442,14 +442,14 @@
    BATTLE MAPS  — dark background
    "Create Battle Maps on the Fly"
 ═══════════════════════════════════════════════════════ #}
-<section id="battle-maps" class="bg-brand-black py-16 sm:py-28 overflow-hidden" aria-label="Create battle maps">
-  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+<section id="battle-maps" class="bg-[#000000] py-20 sm:py-28 overflow-hidden" aria-label="Create battle maps">
+  <div class="mx-auto max-w-container px-5 sm:px-8">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
       <!-- Text -->
       <div>
         <span class="section-eyebrow-light">DM-Ready Terrain</span>
-        <h2 class="heading-light text-4xl sm:text-5xl mb-6 leading-tight">
+        <h2 class="heading-light mb-6 leading-tight">
           Create Battle Maps<br />on the Fly
         </h2>
         <p class="body-light mb-6">
@@ -471,7 +471,7 @@
         #}
         <div class="relative h-80 sm:h-96 bg-zinc-900 border border-zinc-800 overflow-hidden">
           <!-- Atmospheric placeholder for gaming photo -->
-          <div class="absolute inset-0 bg-gradient-to-br from-purple-950/40 via-zinc-900 to-brand-black"></div>
+          <div class="absolute inset-0 bg-gradient-to-br from-purple-950/40 via-zinc-900 to-[#000000]"></div>
 
           <!-- CSS terrain grid suggestion -->
           <div class="absolute inset-0 flex items-center justify-center">
@@ -508,7 +508,7 @@
           </p>
           <!-- Bottom watercolor fade -->
           <div class="absolute inset-x-0 bottom-0 h-16
-                      bg-gradient-to-t from-brand-black to-transparent"></div>
+                      bg-gradient-to-t from-[#000000] to-transparent"></div>
         </div>
       </div>
 
@@ -520,7 +520,7 @@
 {# ═══════════════════════════════════════════════════════
    Smoke divider — black → white
 ═══════════════════════════════════════════════════════ #}
-<div class="bg-brand-black smoke-divider -mb-px" aria-hidden="true">
+<div class="bg-[#000000] smoke-divider -mb-px" aria-hidden="true">
   <svg viewBox="0 0 1440 60" preserveAspectRatio="none" class="w-full block" style="height:60px;">
     <path d="M0,0 C160,58 320,4 560,35 C720,55 900,8 1080,35 C1220,55 1360,12 1440,0 L1440,60 L0,60 Z"
           fill="white"/>
@@ -532,14 +532,14 @@
    TILES GALLERY  — white background
    "Landscapes as Diverse…" (product gallery variant)
 ═══════════════════════════════════════════════════════ #}
-<section id="tiles" class="bg-white py-16 sm:py-24" aria-label="Tile packs gallery">
-  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+<section id="tiles" class="bg-white py-20 sm:py-28" aria-label="Tile packs gallery">
+  <div class="mx-auto max-w-container px-5 sm:px-8">
 
     <!-- Section header + HTMX filter -->
     <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
       <div>
         <span class="section-eyebrow">The Full Collection</span>
-        <h2 class="heading-dark text-3xl sm:text-4xl">
+        <h2 class="heading-dark">
           Landscapes as Diverse as<br class="hidden sm:block"/>Your Imagination
         </h2>
       </div>
@@ -547,7 +547,7 @@
       <div class="flex gap-2 shrink-0" role="tablist" aria-label="Filter by category">
         <button
           class="px-4 py-2 text-[10px] font-display font-semibold tracking-widest uppercase
-                 bg-brand-off-black text-white transition-colors"
+                 bg-[#000000] text-white transition-colors"
           hx-get="/partials/products"
           hx-target="#product-grid"
           hx-swap="innerHTML"
@@ -604,7 +604,7 @@
                     ELFSIGHT_APP_ID is set in .env)
 ═══════════════════════════════════════════════════════ #}
 <section class="bg-zinc-50 border-t border-zinc-100 py-16 sm:py-20" aria-label="Newsletter and social feed">
-  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+  <div class="mx-auto max-w-container px-5 sm:px-8">
 
     {# ── Email signup + social icons (centred) ── #}
     <div class="max-w-xl mx-auto text-center mb-14">
@@ -728,7 +728,7 @@
    JOIN THE ADVENTURE  — dark illustrated bg, email CTA
    (Figma: castle/mountains silhouette, atmospheric illustration)
 ═══════════════════════════════════════════════════════ #}
-<section class="relative bg-brand-black overflow-hidden py-20 sm:py-32" aria-label="Join the adventure">
+<section class="relative bg-[#000000] overflow-hidden py-20 sm:py-32" aria-label="Join the adventure">
 
   <!-- Atmospheric bg — TODO: Replace with castle/mountains illustration -->
   <div class="absolute inset-0 bg-join-bg" aria-hidden="true"></div>
