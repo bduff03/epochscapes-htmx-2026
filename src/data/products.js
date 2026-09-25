@@ -9,7 +9,7 @@ const products = {
     {
       id:          'hidden-temple-kit',
       name:        'Hidden Temple Kit',
-      slug:        '/kits/hidden-temple',
+      slug:        '/products/hidden-temple-kit',
       price:       { min: 95, max: 110 },
       priceLabel:  '$95 – $110',
       category:    'kits',
@@ -20,7 +20,7 @@ const products = {
     {
       id:          'crystal-caverns-kit',
       name:        'Crystal Caverns Kit',
-      slug:        '/kits/crystal-caverns',
+      slug:        '/products/crystal-caverns-kit',
       price:       { min: 95, max: 110 },
       priceLabel:  '$95 – $110',
       category:    'kits',
@@ -31,7 +31,7 @@ const products = {
     {
       id:          'ancient-woodlands-kit',
       name:        'Ancient Woodlands Kit',
-      slug:        '/kits/ancient-woodlands',
+      slug:        '/products/ancient-woodlands-kit',
       price:       { min: 95, max: 110 },
       priceLabel:  '$95 – $110',
       category:    'kits',
@@ -42,7 +42,7 @@ const products = {
     {
       id:          'endless-sands-kit',
       name:        'Endless Sands Kit',
-      slug:        '/kits/endless-sands',
+      slug:        '/products/endless-sands-kit',
       price:       { min: 95, max: 110 },
       priceLabel:  '$95 – $110',
       category:    'kits',
@@ -53,7 +53,7 @@ const products = {
     {
       id:          'tiles-stone-water',
       name:        'Stone & Water — Pack of 12',
-      slug:        '/tiles/stone-water',
+      slug:        '/products/tiles-stone-water',
       price:       { min: 30, max: 35 },
       priceLabel:  '$30 – $35',
       category:    'tiles',
@@ -64,7 +64,7 @@ const products = {
     {
       id:          'tiles-castle-grass',
       name:        'Castle & Grass — Pack of 12',
-      slug:        '/tiles/castle-grass',
+      slug:        '/products/tiles-castle-grass',
       price:       { min: 30, max: 35 },
       priceLabel:  '$30 – $35',
       category:    'tiles',
@@ -75,7 +75,7 @@ const products = {
     {
       id:          'tiles-sand-water',
       name:        'Sand & Water — Pack of 12',
-      slug:        '/tiles/sand-water',
+      slug:        '/products/tiles-sand-water',
       price:       { min: 30, max: 35 },
       priceLabel:  '$30 – $35',
       category:    'tiles',
@@ -86,7 +86,7 @@ const products = {
     {
       id:          'castle-walls-10',
       name:        'Castle Walls — Pack of 10',
-      slug:        '/accessories/castle-walls',
+      slug:        '/products/castle-walls-10',
       price:       { min: 8, max: 10 },
       priceLabel:  '$8 – $10',
       category:    'accessories',

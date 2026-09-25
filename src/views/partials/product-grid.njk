@@ -1,23 +1,30 @@
 {% if products.length %}
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
     {% for p in products %}
-      <article class="group border border-zinc-100 overflow-hidden
-                      transition-all duration-300 bg-white
-                      hover:border-brand-green/40 hover:shadow-[0_4px_24px_rgba(74,124,89,0.12)]
-                      hover:-translate-y-0.5"
-               aria-label="{{ p.name }}">
+      {#
+        Full-card link — the entire card is a single <a> so clicking anywhere
+        on it navigates to the product detail page.
+        TODO: replace href with Hostinger checkout/PDP URL when wired.
+      #}
+      <a href="{{ p.slug }}"
+         class="group block border border-zinc-100 overflow-hidden rounded-[4px]
+                transition-all duration-300 bg-white no-underline
+                hover:border-brand-green/40 hover:shadow-[0_4px_24px_rgba(74,124,89,0.12)]
+                hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-brand-green
+                focus-visible:ring-offset-2 focus-visible:outline-none"
+         aria-label="{{ p.name }}{% if p.priceLabel %} — {{ p.priceLabel }}{% endif %}">
 
         {# Gradient thumbnail — TODO: replace with real product photography #}
         <div class="relative h-44 {{ p.thumb }} overflow-hidden">
           {% if p.badge %}
             <span class="absolute top-3 left-3 px-2 py-0.5
                          bg-brand-red text-white text-[10px]
-                         font-display font-semibold tracking-widest uppercase">
+                         font-sans font-bold tracking-widest uppercase">
               {{ p.badge }}
             </span>
           {% endif %}
           <span class="absolute bottom-2 left-3 px-2 py-0.5
-                       bg-black/40 text-white/70 text-[9px] font-display tracking-widest uppercase">
+                       bg-black/40 text-white/70 text-[9px] font-sans tracking-widest uppercase">
             {{ p.category }}
           </span>
         </div>
@@ -35,22 +42,20 @@
           {% endif %}
 
           <div class="flex items-center justify-between pt-3 border-t border-zinc-100">
-            <span class="text-brand-green font-display font-semibold text-sm tracking-wide">
+            <span class="text-brand-green font-sans font-bold text-[13px] tracking-wide">
               {{ p.priceLabel }}
             </span>
-            {# TODO: Replace href with Hostinger checkout URL #}
-            <a href="{{ p.slug or '#' }}"
-               class="text-[10px] font-display font-semibold tracking-widest uppercase
-                      text-zinc-400 border border-zinc-200 px-3 py-1.5
-                      hover:border-brand-red hover:text-brand-red transition-colors"
-               aria-label="View {{ p.name }}">
+            <span class="text-[10px] font-sans font-bold tracking-widest uppercase
+                         text-zinc-400 border border-zinc-200 px-3 py-1.5
+                         group-hover:border-brand-red group-hover:text-brand-red transition-colors"
+                  aria-hidden="true">
               View →
-            </a>
+            </span>
           </div>
         </div>
-      </article>
+      </a>
     {% endfor %}
   </div>
 {% else %}
-  <p class="text-zinc-400 text-center py-10 font-sans text-sm">No products found.</p>
+  <p class="text-[#666666] text-center py-10 font-sans text-[14px]">No products found.</p>
 {% endif %}

@@ -58,11 +58,11 @@
             x-transition:leave-end="opacity-0"
             class="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-44 bg-white shadow-xl border border-zinc-100 py-1"
           >
-            <a href="/#kits"  class="block px-4 py-2.5 text-xs font-display tracking-widest uppercase text-zinc-700 hover:bg-zinc-50 hover:text-brand-green transition-colors">Kits</a>
-            <a href="/#tiles" class="block px-4 py-2.5 text-xs font-display tracking-widest uppercase text-zinc-700 hover:bg-zinc-50 hover:text-brand-green transition-colors">Tiles</a>
-            <a href="/#kits"  class="block px-4 py-2.5 text-xs font-display tracking-widest uppercase text-zinc-700 hover:bg-zinc-50 hover:text-brand-green transition-colors">Terrain</a>
+            <a href="/kits"  class="block px-4 py-2.5 text-xs font-display tracking-widest uppercase text-zinc-700 hover:bg-zinc-50 hover:text-brand-green transition-colors">Kits</a>
+            <a href="/tiles" class="block px-4 py-2.5 text-xs font-display tracking-widest uppercase text-zinc-700 hover:bg-zinc-50 hover:text-brand-green transition-colors">Tiles</a>
+            <a href="/terrain" class="block px-4 py-2.5 text-xs font-display tracking-widest uppercase text-zinc-700 hover:bg-zinc-50 hover:text-brand-green transition-colors">Terrain</a>
             <div class="border-t border-zinc-100 my-1"></div>
-            <a href="/#kits"  class="block px-4 py-2.5 text-xs font-display tracking-widest uppercase text-zinc-700 hover:bg-zinc-50 hover:text-brand-green transition-colors">All Products</a>
+            <a href="/products" class="block px-4 py-2.5 text-xs font-display tracking-widest uppercase text-zinc-700 hover:bg-zinc-50 hover:text-brand-green transition-colors">All Products</a>
           </div>
         </div>
 
@@ -90,7 +90,7 @@
             class="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-44 bg-white shadow-xl border border-zinc-100 py-1"
           >
             <a href="/about"    class="block px-4 py-2.5 text-xs font-display tracking-widest uppercase text-zinc-700 hover:bg-zinc-50 hover:text-brand-green transition-colors">Our Story</a>
-            <a href="/about"    class="block px-4 py-2.5 text-xs font-display tracking-widest uppercase text-zinc-700 hover:bg-zinc-50 hover:text-brand-green transition-colors">How It Works</a>
+            <a href="/about#how-it-works" class="block px-4 py-2.5 text-xs font-display tracking-widest uppercase text-zinc-700 hover:bg-zinc-50 hover:text-brand-green transition-colors">How It Works</a>
           </div>
         </div>
       </nav>
@@ -139,13 +139,13 @@
   >
     <nav class="px-5 py-6 space-y-1" aria-label="Mobile navigation">
       <p class="text-white/30 text-[10px] font-display tracking-widest uppercase mb-3">Shop</p>
-      <a @click="open=false" href="/#kits"  class="block px-2 py-2.5 text-sm font-display tracking-widest uppercase text-white/70 hover:text-white">Kits</a>
-      <a @click="open=false" href="/#tiles" class="block px-2 py-2.5 text-sm font-display tracking-widest uppercase text-white/70 hover:text-white">Tiles</a>
-      <a @click="open=false" href="/#kits"  class="block px-2 py-2.5 text-sm font-display tracking-widest uppercase text-white/70 hover:text-white">Terrain</a>
+      <a @click="open=false" href="/kits"  class="block px-2 py-2.5 text-sm font-display tracking-widest uppercase text-white/70 hover:text-white">Kits</a>
+      <a @click="open=false" href="/tiles" class="block px-2 py-2.5 text-sm font-display tracking-widest uppercase text-white/70 hover:text-white">Tiles</a>
+      <a @click="open=false" href="/terrain" class="block px-2 py-2.5 text-sm font-display tracking-widest uppercase text-white/70 hover:text-white">Terrain</a>
       <div class="border-t border-white/10 my-3"></div>
       <a @click="open=false" href="/about"  class="block px-2 py-2.5 text-sm font-display tracking-widest uppercase text-white/70 hover:text-white">About</a>
       <div class="pt-4">
-        <a href="/#kits" class="btn-cta w-full justify-center text-xs py-3">Shop Now</a>
+        <a href="/products" class="btn-cta w-full justify-center text-xs py-3">Shop Now</a>
       </div>
     </nav>
   </div>

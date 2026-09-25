@@ -47,7 +47,7 @@
           build any scene before your players' eyes.
         </p>
 
-        <a href="/#features" class="btn-cta">
+        <a href="/products" class="btn-cta">
           Get Started Today
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
@@ -69,7 +69,7 @@
            role="navigation" aria-label="Product categories">
 
         <!-- KITS -->
-        <a href="/#kits" class="cat-btn" aria-label="Shop Kits">
+        <a href="/kits" class="cat-btn" aria-label="Shop Kits">
           <svg class="cat-btn-icon text-zinc-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 32 32" aria-hidden="true">
             <!-- Castle silhouette -->
             <rect x="2"  y="3"  width="4" height="4" rx="0.5" fill="currentColor"/>
@@ -86,7 +86,7 @@
         </a>
 
         <!-- TILES -->
-        <a href="/#tiles" class="cat-btn" aria-label="Shop Tiles">
+        <a href="/tiles" class="cat-btn" aria-label="Shop Tiles">
           <svg class="cat-btn-icon text-zinc-400" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
             <!-- 2×2 tile grid -->
             <rect x="2"  y="2"  width="13" height="13" rx="1.5"/>
@@ -98,7 +98,7 @@
         </a>
 
         <!-- TERRAIN -->
-        <a href="/#kits" class="cat-btn" aria-label="Shop Terrain">
+        <a href="/terrain" class="cat-btn" aria-label="Shop Terrain">
           <svg class="cat-btn-icon text-zinc-400" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
             <!-- Pine tree silhouette -->
             <polygon points="16,2 30,26 2,26"/>
@@ -108,7 +108,7 @@
         </a>
 
         <!-- SHOP (active / green) -->
-        <a href="/#kits" class="cat-btn active" aria-label="Shop all products" aria-selected="true">
+        <a href="/products" class="cat-btn active" aria-label="Shop all products" aria-selected="true">
           <svg class="cat-btn-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 32 32" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round"
                   d="M4 7h24l-2.5 12H6.5L4 7z M4 7L2 2H0"/>
@@ -154,7 +154,7 @@
           Bring your setting into reality.
         </p>
 
-        <a href="/#kits" class="btn-cta mb-12 sm:mb-16 inline-flex">Get Started Today!</a>
+        <a href="/kits" class="btn-cta mb-12 sm:mb-16 inline-flex">Get Started Today!</a>
 
         {#
           Product illustration — watercolor-style placeholder.
@@ -287,7 +287,7 @@
         <span class="section-eyebrow-light">Themed Packages</span>
         <h2 class="heading-light">Explore Our Kits</h2>
       </div>
-      <a href="/#kits" class="btn-cta shrink-0 text-xs">Shop All Kits</a>
+      <a href="/kits" class="btn-cta shrink-0 text-xs">Shop All Kits</a>
     </div>
 
     <!-- Kit cards -->
@@ -295,45 +295,46 @@
       {% set kits = products | selectattr("category", "equalto", "kits") if products else [] %}
       {% for p in products %}
         {% if p.category === 'kits' %}
-          <article class="product-card-dark group" aria-label="{{ p.name }}">
+          {#
+            Full-card link — entire card is clickable.
+            TODO: replace href with Hostinger checkout/PDP URL when ready.
+          #}
+          <a href="{{ p.slug }}"
+             class="product-card-dark group block no-underline
+                    focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2
+                    focus-visible:outline-none focus-visible:ring-offset-[#000000]"
+             aria-label="{{ p.name }}{% if p.priceLabel %} — {{ p.priceLabel }}{% endif %}">
 
             {# Thumbnail — TODO: replace with real product photography #}
             <div class="relative h-52 {{ p.thumb }} overflow-hidden">
               {% if p.badge %}
                 <span class="absolute top-3 left-3 px-2 py-0.5 bg-brand-red text-white
-                             text-[10px] font-display font-semibold tracking-widest uppercase">
+                             text-[10px] font-sans font-bold tracking-widest uppercase">
                   {{ p.badge }}
                 </span>
               {% endif %}
-              <!-- Placeholder content -->
-              <div class="absolute inset-0 flex items-end p-4">
-                <span class="text-white/30 text-[10px] font-display tracking-widest uppercase">
-                  {# TODO: product image #}
-                </span>
-              </div>
             </div>
 
             <div class="p-4">
-              <h3 class="text-sm font-display font-semibold text-white tracking-wide uppercase mb-1
+              <h3 class="text-[13px] font-sans font-bold text-white tracking-[0.05em] uppercase mb-1
                          group-hover:text-brand-green transition-colors leading-snug">
                 {{ p.name }}
               </h3>
               {% if p.description %}
-                <p class="text-zinc-500 text-xs leading-relaxed mb-3 line-clamp-2">{{ p.description }}</p>
+                <p class="text-zinc-500 text-[12px] leading-relaxed mb-3 line-clamp-2">{{ p.description }}</p>
               {% endif %}
               <div class="flex items-center justify-between pt-2 border-t border-zinc-800">
-                <span class="text-brand-green font-display font-semibold text-sm tracking-wide">
+                <span class="text-brand-green font-sans font-bold text-[13px] tracking-wide">
                   {{ p.priceLabel }}
                 </span>
-                <a href="{{ p.slug or '#' }}"
-                   class="text-[10px] font-display font-semibold tracking-widest uppercase
-                          text-zinc-400 hover:text-white transition-colors"
-                   aria-label="View {{ p.name }}">
+                <span class="text-[10px] font-sans font-bold tracking-widest uppercase
+                             text-zinc-500 group-hover:text-white transition-colors"
+                      aria-hidden="true">
                   View →
-                </a>
+                </span>
               </div>
             </div>
-          </article>
+          </a>
         {% endif %}
       {% endfor %}
     </div>
@@ -381,7 +382,7 @@
           a tabletop fantasy world from your imagination.
         </p>
 
-        <a href="/#kits" class="btn-cta inline-flex">Shop All Products</a>
+        <a href="/products" class="btn-cta inline-flex">Shop All Products</a>
       </div>
 
       <!-- Lifestyle photo placeholder + product image trio -->
@@ -460,7 +461,7 @@
           Unchain your terrain with limitless combinations of tiles, walls, and detailed scenery.
           The options are endless.
         </p>
-        <a href="/#kits" class="btn-cta inline-flex">Shop Now</a>
+        <a href="/products" class="btn-cta inline-flex">Shop Now</a>
       </div>
 
       <!-- Terrain in action — photo placeholder -->

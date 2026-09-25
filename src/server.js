@@ -10,7 +10,7 @@ const app  = express();
 const PORT = process.env.PORT || 3000;
 
 /* ── Template engine ──────────────────────────────────────── */
-const env = nunjucks.configure(path.join(__dirname, 'views'), {
+nunjucks.configure(path.join(__dirname, 'views'), {
   autoescape:  true,
   express:     app,
   watch:       process.env.NODE_ENV !== 'production',
@@ -20,19 +20,96 @@ const env = nunjucks.configure(path.join(__dirname, 'views'), {
 /* ── Static assets ───────────────────────────────────────── */
 app.use(express.static(path.join(__dirname, 'public')));
 
+/* ── Route helpers ───────────────────────────────────────── */
+
+// Renders stub.njk with a consistent context so every coming-soon
+// page has navigation and a sensible back-link.
+function stub(page, opts = {}) {
+  return (_req, res) => res.render('stub.njk', {
+    title: `${page} — Epochscapes`,
+    page,
+    ...opts,
+  });
+}
+
 /* ── Routes ──────────────────────────────────────────────── */
 
 // Homepage
 app.get('/', (req, res) => {
   res.render('index.njk', {
-    title:          'Epochscapes — Magnetic Dungeon Tiles & Modular Terrain',
-    products:       products.featured,
-    // Elfsight social-feed widget ID (set ELFSIGHT_APP_ID in .env to activate)
-    elfsightAppId:  process.env.ELFSIGHT_APP_ID || null,
+    title:         'Epochscapes — Magnetic Dungeon Tiles & Modular Terrain',
+    products:      products.featured,
+    elfsightAppId: process.env.ELFSIGHT_APP_ID || null,
   });
 });
 
-// HTMX partial: product grid (ready for category filter)
+// ── Shop routes ───────────────────────────────────────────
+
+// Kits listing (stub — full catalog page in a future PR)
+app.get('/kits', stub('Kits', {
+  description: 'Complete themed terrain kits — tiles, walls, and accessory pieces.',
+  backLabel: '← Back to home',
+  backHref: '/',
+}));
+
+// Tiles listing (stub)
+app.get('/tiles', stub('Tile Packs', {
+  description: 'Packs of 12 double-sided tiles across dozens of biome combinations.',
+  backLabel: '← Back to home',
+  backHref: '/',
+}));
+
+// Terrain listing (stub)
+app.get('/terrain', stub('Terrain', {
+  description: 'Detailed terrain pieces — trees, pillars, crystals, walls, and more.',
+  backLabel: '← Back to home',
+  backHref: '/',
+}));
+
+// All-products catalog (stub)
+app.get('/products', stub('All Products', {
+  description: 'Every Epochscapes kit, tile pack, and terrain accessory.',
+  backLabel: '← Back to home',
+  backHref: '/',
+}));
+
+// Product detail page (stub — real PDP in future PR)
+app.get('/products/:id', (req, res) => {
+  const product = products.all.find(p => p.id === req.params.id);
+  res.render('stub.njk', {
+    title:       product ? `${product.name} — Epochscapes` : 'Product — Epochscapes',
+    page:        product ? product.name : 'Product Detail',
+    description: product ? product.description : 'Full product detail page coming soon.',
+    price:       product ? product.priceLabel : null,
+    backLabel:   '← Back to products',
+    backHref:    '/products',
+    // TODO: wire to Hostinger product + checkout when ready
+  });
+});
+
+// ── Support / legal routes ────────────────────────────────
+
+app.get('/support/shipping',  stub('Shipping & Returns',  { backHref: '/', backLabel: '← Back to home' }));
+app.get('/support/faq',       stub('FAQ',                 { backHref: '/', backLabel: '← Back to home' }));
+app.get('/legal/privacy',     stub('Privacy Policy',      { backHref: '/', backLabel: '← Back to home' }));
+app.get('/legal/terms',       stub('Terms of Service',    { backHref: '/', backLabel: '← Back to home' }));
+
+// ── Other pages ───────────────────────────────────────────
+
+app.get('/about', stub('About', {
+  description: 'Learn the story behind Epoch Possibilities LLC and the Epochscapes terrain system.',
+  backLabel: '← Back to home',
+  backHref: '/',
+}));
+
+app.get('/cart', stub('Cart', {
+  description: 'Your shopping cart is empty — find some terrain to fill it.',
+  backLabel: '← Keep shopping',
+  backHref: '/products',
+  // TODO: wire to Hostinger cart API
+}));
+
+/* ── HTMX partial: product grid ─────────────────────────── */
 app.get('/partials/products', (req, res) => {
   const { category } = req.query;
   const items = category
@@ -41,13 +118,7 @@ app.get('/partials/products', (req, res) => {
   res.render('partials/product-grid.njk', { products: items });
 });
 
-// Stub routes so nav links resolve during dev
-app.get('/kits',   (_req, res) => res.redirect('/#categories'));
-app.get('/tiles',  (_req, res) => res.redirect('/#categories'));
-app.get('/cart',   (_req, res) => res.render('stub.njk', { page: 'Cart', title: 'Cart — Epochscapes' }));
-app.get('/about',  (_req, res) => res.render('stub.njk', { page: 'About', title: 'About — Epochscapes' }));
-
 /* ── Start ───────────────────────────────────────────────── */
 app.listen(PORT, () => {
-  console.log(`\n  Epochscapes running at http://localhost:${PORT}\n`);
+  console.log(`\n  Epochscapes → http://localhost:${PORT}\n`);
 });
