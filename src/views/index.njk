@@ -599,64 +599,126 @@
 
 
 {# ═══════════════════════════════════════════════════════
-   STAY UPDATED  — white background, email + social
+   STAY UPDATED  — white background, email + social icons
+                  + Elfsight social feed (placeholder until
+                    ELFSIGHT_APP_ID is set in .env)
 ═══════════════════════════════════════════════════════ #}
-<section class="bg-zinc-50 border-t border-zinc-100 py-16 sm:py-20" aria-label="Newsletter signup">
-  <div class="mx-auto max-w-xl px-5 sm:px-8 text-center">
+<section class="bg-zinc-50 border-t border-zinc-100 py-16 sm:py-20" aria-label="Newsletter and social feed">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
 
-    <h2 class="heading-dark text-2xl sm:text-3xl mb-3">Stay Updated</h2>
-    <p class="body-dark text-sm mb-8">
-      New kits, terrain ideas, and DM tips — straight to your inbox.
-    </p>
+    {# ── Email signup + social icons (centred) ── #}
+    <div class="max-w-xl mx-auto text-center mb-14">
 
-    {# TODO: Hook to email marketing service (Mailchimp, ConvertKit, etc.) #}
-    <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-10"
-          onsubmit="event.preventDefault(); alert('Email signup coming soon!')">
-      <label for="newsletter-email" class="sr-only">Email address</label>
-      <input
-        id="newsletter-email"
-        type="email"
-        name="email"
-        placeholder="Your email address"
-        required
-        class="flex-1 px-4 py-3 border border-zinc-300 text-sm font-sans
-               focus:outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green
-               bg-white"
-      />
-      <button type="submit" class="btn-cta text-xs py-3 px-6 shrink-0">Subscribe</button>
-    </form>
+      <h2 class="heading-dark text-2xl sm:text-3xl mb-3">Stay Updated</h2>
+      <p class="body-dark text-sm mb-8">
+        New kits, terrain ideas, and DM tips — straight to your inbox.
+      </p>
 
-    <!-- Social icons -->
-    <div class="flex items-center justify-center gap-5" aria-label="Social media links">
-      <!-- YouTube -->
-      <a href="#" aria-label="Epochscapes on YouTube"
-         class="text-brand-green hover:text-brand-green-dark transition-colors">
-        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5a3 3 0 00-2.1 2.1C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/>
-        </svg>
-      </a>
-      <!-- Instagram -->
-      <a href="#" aria-label="Epochscapes on Instagram"
-         class="text-brand-green hover:text-brand-green-dark transition-colors">
-        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-        </svg>
-      </a>
-      <!-- X / Twitter -->
-      <a href="#" aria-label="Epochscapes on X"
-         class="text-brand-green hover:text-brand-green-dark transition-colors">
-        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-        </svg>
-      </a>
-      <!-- Facebook -->
-      <a href="#" aria-label="Epochscapes on Facebook"
-         class="text-brand-green hover:text-brand-green-dark transition-colors">
-        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-        </svg>
-      </a>
+      {# TODO: Hook to email marketing service (Mailchimp, ConvertKit, etc.) #}
+      <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-10"
+            onsubmit="event.preventDefault(); alert('Email signup coming soon!')">
+        <label for="newsletter-email" class="sr-only">Email address</label>
+        <input
+          id="newsletter-email"
+          type="email"
+          name="email"
+          placeholder="Your email address"
+          required
+          class="flex-1 px-4 py-3 border border-zinc-300 text-sm font-sans
+                 focus:outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green
+                 bg-white"
+        />
+        <button type="submit" class="btn-cta text-xs py-3 px-6 shrink-0">Subscribe</button>
+      </form>
+
+      <!-- Social icon row -->
+      <div class="flex items-center justify-center gap-5" aria-label="Social media links">
+        <!-- YouTube -->
+        <a href="#" aria-label="Epochscapes on YouTube"
+           class="text-brand-green hover:text-brand-green-dark transition-colors">
+          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5a3 3 0 00-2.1 2.1C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/>
+          </svg>
+        </a>
+        <!-- Instagram -->
+        <a href="#" aria-label="Epochscapes on Instagram"
+           class="text-brand-green hover:text-brand-green-dark transition-colors">
+          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+          </svg>
+        </a>
+        <!-- X / Twitter -->
+        <a href="#" aria-label="Epochscapes on X"
+           class="text-brand-green hover:text-brand-green-dark transition-colors">
+          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <!-- Facebook -->
+        <a href="#" aria-label="Epochscapes on Facebook"
+           class="text-brand-green hover:text-brand-green-dark transition-colors">
+          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+      </div>
     </div>
+
+    {# ── Elfsight social feed ────────────────────────────
+       To activate: add ELFSIGHT_APP_ID=<your-app-uuid> to
+       .env and restart the server. That's the only change
+       needed — no template edits required.
+    ─────────────────────────────────────────────────── #}
+    {% if elfsightAppId %}
+
+      {# ✅ Live Elfsight embed — renders once ELFSIGHT_APP_ID is set #}
+      <div class="elfsight-social-feed" data-section="stay-updated">
+        <script src="https://static.elfsight.com/platform/platform.js" async></script>
+        <div class="elfsight-app-{{ elfsightAppId }}"
+             data-elfsight-app-lazy
+             aria-label="Social media feed"></div>
+      </div>
+
+    {% else %}
+
+      {# 🔲 Placeholder — swapped out by setting ELFSIGHT_APP_ID in .env #}
+      <div
+        class="border-2 border-dashed border-zinc-200 bg-white
+               rounded-sm min-h-[280px] flex flex-col items-center justify-center
+               gap-4 p-8 text-center"
+        data-placeholder="elfsight-social-feed"
+        aria-label="Social feed placeholder"
+        role="region"
+      >
+        <!-- Icon: social grid -->
+        <svg class="w-10 h-10 text-zinc-300" fill="none" stroke="currentColor" stroke-width="1.5"
+             viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM2.25 14.625c0-.621.504-1.125 1.125-1.125h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM13.5 6.375c0-.621.504-1.125 1.125-1.125h6c.621 0 1.125.504 1.125 1.125v6.75c0 .621-.504 1.125-1.125 1.125h-6A1.125 1.125 0 0113.5 13.125V6.375z"/>
+        </svg>
+
+        <div>
+          <p class="text-sm font-display font-semibold tracking-widest uppercase text-zinc-400 mb-1">
+            Social Feed
+          </p>
+          <p class="text-xs text-zinc-400 font-sans max-w-xs leading-relaxed">
+            Elfsight widget goes here. Set
+            <code class="bg-zinc-100 px-1.5 py-0.5 font-mono text-zinc-500">ELFSIGHT_APP_ID</code>
+            in <code class="bg-zinc-100 px-1.5 py-0.5 font-mono text-zinc-500">.env</code>
+            and restart the server to activate.
+          </p>
+        </div>
+
+        {# Grid skeleton suggesting post thumbnails #}
+        <div class="grid grid-cols-3 sm:grid-cols-6 gap-2 w-full max-w-lg mt-2"
+             aria-hidden="true">
+          {% for i in range(0, 6) %}
+            <div class="aspect-square bg-zinc-100 rounded-sm animate-pulse"></div>
+          {% endfor %}
+        </div>
+      </div>
+
+    {% endif %}
 
   </div>
 </section>

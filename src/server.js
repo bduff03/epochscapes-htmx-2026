@@ -25,8 +25,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Homepage
 app.get('/', (req, res) => {
   res.render('index.njk', {
-    title:    'Epochscapes — Magnetic Dungeon Tiles & Modular Terrain',
-    products: products.featured,
+    title:          'Epochscapes — Magnetic Dungeon Tiles & Modular Terrain',
+    products:       products.featured,
+    // Elfsight social-feed widget ID (set ELFSIGHT_APP_ID in .env to activate)
+    elfsightAppId:  process.env.ELFSIGHT_APP_ID || null,
   });
 });
 
