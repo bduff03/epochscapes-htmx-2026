@@ -1,0 +1,47 @@
+{% extends "base.njk" %}
+
+{% block content %}
+<section class="min-h-screen bg-white flex flex-col items-center justify-center px-5 py-24 pt-40 text-center">
+
+  <!-- Icon -->
+  <svg class="w-12 h-12 text-brand-green mb-6 opacity-70" fill="none" stroke="currentColor"
+       stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+    <path stroke-linecap="round" stroke-linejoin="round"
+          d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+  </svg>
+
+  <!-- Label -->
+  <p class="text-[11px] font-sans font-bold tracking-[0.22em] uppercase text-brand-green mb-3">
+    Coming Soon
+  </p>
+
+  <!-- Page name -->
+  <h1 class="font-sans font-extrabold text-[#333333] uppercase tracking-tight
+             text-[2rem] sm:text-[2.5rem] leading-[1.1] mb-4">
+    {{ page }}
+  </h1>
+
+  <!-- Description if provided -->
+  {% if description %}
+    <p class="text-[#666666] text-[17px] leading-relaxed max-w-sm mb-8">{{ description }}</p>
+  {% else %}
+    <p class="text-[#666666] text-[17px] leading-relaxed max-w-sm mb-8">
+      This page is being built. Check back soon.
+    </p>
+  {% endif %}
+
+  <!-- Price if it's a product stub -->
+  {% if price %}
+    <p class="text-brand-green font-sans font-bold text-lg mb-6">{{ price }}</p>
+  {% endif %}
+
+  <!-- Back link -->
+  <a href="{{ backHref or '/' }}"
+     class="text-[13px] font-sans font-semibold tracking-[0.06em] uppercase
+            text-[#333333] border-b border-[#333333]/30 pb-0.5
+            hover:text-brand-green hover:border-brand-green transition-colors">
+    {{ backLabel or '← Back to home' }}
+  </a>
+
+</section>
+{% endblock %}

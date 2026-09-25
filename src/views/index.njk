@@ -1,0 +1,788 @@
+{% extends "base.njk" %}
+
+{% block content %}
+
+{# ═══════════════════════════════════════════════════════
+   HERO  — dark atmospheric background, left-aligned text
+         + category navigation buttons
+═══════════════════════════════════════════════════════ #}
+<section
+  id="hero"
+  class="relative min-h-screen flex flex-col justify-end overflow-hidden bg-[#000000]"
+  aria-label="Hero"
+>
+  {#
+    TODO: Replace the CSS atmosphere below with the real hero photography.
+    Expected image: dark fantasy terrain with miniature figures, purple fire effects.
+    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+         style="background-image: url('/images/hero-bg.jpg')"></div>
+  #}
+
+  <!-- Atmospheric gradient standing in for hero photography -->
+  <div class="absolute inset-0 bg-hero-atmosphere" aria-hidden="true"></div>
+
+  <!-- Edge vignette -->
+  <div class="absolute inset-0 [background:radial-gradient(ellipse_at_center,transparent_40%,rgba(0,0,0,0.7)_100%)]"
+       aria-hidden="true"></div>
+
+  <!-- Bottom fade -->
+  <div class="absolute bottom-0 inset-x-0 h-48 bg-gradient-to-t from-[#000000] to-transparent"
+       aria-hidden="true"></div>
+
+  <!-- Hero copy (left-aligned, above fold) -->
+  <div class="relative z-10 flex-1 flex items-center">
+    <div class="mx-auto w-full max-w-container px-5 sm:px-8 py-24 pt-40">
+      <div class="max-w-lg">
+
+        <p class="section-eyebrow-light mb-4">Epoch Possibilities LLC</p>
+
+        <h1 class="font-sans font-black text-white uppercase
+                   leading-[1.05] tracking-[-0.02em]
+                   text-[2.75rem] sm:text-[3.5rem] lg:text-[3.75rem] mb-6">
+          Build Your Next<br />Great Adventure
+        </h1>
+
+        <p class="text-white/65 text-base sm:text-lg leading-relaxed max-w-sm mb-8">
+          Intuitive &amp; versatile TTRPG terrain — magnetic tiles that let you
+          build any scene before your players' eyes.
+        </p>
+
+        <a href="/products" class="btn-cta">
+          Get Started Today
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  {# ── Category navigation buttons ───────────────────── #}
+  <div class="relative z-10 mx-auto w-full max-w-container px-5 sm:px-8 pb-0">
+    <div class="flex justify-start sm:justify-center overflow-x-auto scrollbar-thin pb-0">
+
+      {#
+        Buttons sit in a white card that slightly overlaps the next section.
+        On mobile they scroll horizontally.
+      #}
+      <div class="flex bg-white shadow-[0_4px_24px_rgba(0,0,0,0.35)] overflow-hidden shrink-0"
+           role="navigation" aria-label="Product categories">
+
+        <!-- KITS -->
+        <a href="/kits" class="cat-btn" aria-label="Shop Kits">
+          <svg class="cat-btn-icon text-zinc-400" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 32 32" aria-hidden="true">
+            <!-- Castle silhouette -->
+            <rect x="2"  y="3"  width="4" height="4" rx="0.5" fill="currentColor"/>
+            <rect x="8"  y="3"  width="4" height="4" rx="0.5" fill="currentColor"/>
+            <rect x="20" y="3"  width="4" height="4" rx="0.5" fill="currentColor"/>
+            <rect x="26" y="3"  width="4" height="4" rx="0.5" fill="currentColor"/>
+            <rect x="2"  y="7"  width="6" height="14" fill="currentColor"/>
+            <rect x="24" y="7"  width="6" height="14" fill="currentColor"/>
+            <rect x="8"  y="10" width="16" height="11" fill="currentColor"/>
+            <rect x="13" y="16" width="6" height="5" fill="white"/>
+            <rect x="2"  y="21" width="28" height="4" fill="currentColor"/>
+          </svg>
+          <span class="cat-btn-label">Kits</span>
+        </a>
+
+        <!-- TILES -->
+        <a href="/tiles" class="cat-btn" aria-label="Shop Tiles">
+          <svg class="cat-btn-icon text-zinc-400" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
+            <!-- 2×2 tile grid -->
+            <rect x="2"  y="2"  width="13" height="13" rx="1.5"/>
+            <rect x="17" y="2"  width="13" height="13" rx="1.5"/>
+            <rect x="2"  y="17" width="13" height="13" rx="1.5"/>
+            <rect x="17" y="17" width="13" height="13" rx="1.5"/>
+          </svg>
+          <span class="cat-btn-label">Tiles</span>
+        </a>
+
+        <!-- TERRAIN -->
+        <a href="/terrain" class="cat-btn" aria-label="Shop Terrain">
+          <svg class="cat-btn-icon text-zinc-400" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
+            <!-- Pine tree silhouette -->
+            <polygon points="16,2 30,26 2,26"/>
+            <rect x="13" y="26" width="6" height="4"/>
+          </svg>
+          <span class="cat-btn-label">Terrain</span>
+        </a>
+
+        <!-- SHOP (active / green) -->
+        <a href="/products" class="cat-btn active" aria-label="Shop all products" aria-selected="true">
+          <svg class="cat-btn-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 32 32" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M4 7h24l-2.5 12H6.5L4 7z M4 7L2 2H0"/>
+            <circle cx="11" cy="25" r="2" fill="currentColor"/>
+            <circle cx="23" cy="25" r="2" fill="currentColor"/>
+          </svg>
+          <span class="cat-btn-label">Shop</span>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- "Smoke" transition pulling the white section up visually -->
+  <div class="relative z-10 pointer-events-none" aria-hidden="true" style="margin-bottom: -1px;">
+    <svg viewBox="0 0 1440 56" preserveAspectRatio="none" class="w-full block" style="height:56px;">
+      <path
+        d="M0,56 C180,20 300,56 480,30 C600,14 720,50 900,22 C1080,0 1260,40 1440,14 L1440,56 Z"
+        fill="white"
+      />
+    </svg>
+  </div>
+</section>
+
+
+{# ═══════════════════════════════════════════════════════
+   FEATURES  — white background, 2-col layout
+   "Landscapes as Diverse as Your Imagination"
+═══════════════════════════════════════════════════════ #}
+<section id="features" class="bg-white py-20 sm:py-28" aria-label="Key features">
+  <div class="mx-auto max-w-container px-5 sm:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+
+      <!-- LEFT: Headline + body + CTA + illustration -->
+      <div>
+        <h2 class="heading-dark mb-7 leading-tight">
+          Landscapes as Diverse<br />as Your Imagination
+        </h2>
+
+        <p class="body-dark mb-8 max-w-[520px]">
+          Epochscapes is an intuitive and versatile TTRPG terrain that allows any dungeon master
+          to quickly create their battle map and scene before their players' eyes.
+          Bring your setting into reality.
+        </p>
+
+        <a href="/kits" class="btn-cta mb-12 sm:mb-16 inline-flex">Get Started Today!</a>
+
+        {#
+          Product illustration — watercolor-style placeholder.
+          TODO: Replace with the actual watercolor illustration showing stone arch + pine trees.
+        #}
+        <div class="relative rounded overflow-hidden">
+          <div class="h-72 sm:h-80 bg-gradient-to-br from-stone-100 via-green-50 to-slate-100
+                      flex items-center justify-center border border-zinc-100">
+            <!-- Stone arch illustration placeholder -->
+            <div class="relative w-full h-full overflow-hidden">
+              <!-- Sky wash -->
+              <div class="absolute inset-0 bg-gradient-to-b from-sky-50/80 to-stone-50/60"></div>
+
+              <!-- Arch columns (CSS) -->
+              <div class="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-end gap-28">
+                <div class="w-12 bg-gradient-to-b from-stone-300 to-stone-400 rounded-t" style="height:180px;"></div>
+                <div class="w-12 bg-gradient-to-b from-stone-300 to-stone-400 rounded-t" style="height:180px;"></div>
+              </div>
+              <!-- Arch top -->
+              <div class="absolute bottom-36 left-1/2 -translate-x-1/2 w-52 h-32
+                          border-8 border-stone-300 rounded-t-full
+                          border-b-0"></div>
+
+              <!-- Pine trees (CSS triangles) -->
+              <div class="absolute bottom-0 left-10 flex items-end gap-4">
+                <div class="w-0 h-0 border-l-[20px] border-r-[20px] border-b-[60px] border-l-transparent border-r-transparent border-b-green-700/80"></div>
+                <div class="w-0 h-0 border-l-[16px] border-r-[16px] border-b-[50px] border-l-transparent border-r-transparent border-b-green-600/70"></div>
+              </div>
+              <div class="absolute bottom-0 right-10 flex items-end gap-4">
+                <div class="w-0 h-0 border-l-[16px] border-r-[16px] border-b-[50px] border-l-transparent border-r-transparent border-b-green-600/70"></div>
+                <div class="w-0 h-0 border-l-[20px] border-r-[20px] border-b-[60px] border-l-transparent border-r-transparent border-b-green-700/80"></div>
+              </div>
+
+              <!-- Watercolor edge fade -->
+              <div class="absolute inset-0 [mask-image:radial-gradient(ellipse_80%_80%_at_50%_50%,black_60%,transparent_100%)]
+                          bg-transparent"></div>
+              <div class="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent"></div>
+
+              <p class="absolute inset-0 flex items-center justify-center
+                        text-xs text-stone-400 font-sans italic">
+                {# TODO: Replace with watercolor illustration asset #}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: 3 feature blocks with green icons — Figma: ~60px vertical gap between blocks -->
+      <div class="flex flex-col divide-y divide-zinc-100 pt-2">
+
+        <!-- Double-Sided Tiles -->
+        <div class="feature-block py-9 first:pt-0 last:pb-0">
+          <svg class="feature-icon-green" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 48 48" aria-hidden="true">
+            <!-- Layered squares representing double-sided tile -->
+            <rect x="6"  y="6"  width="16" height="16" rx="2"/>
+            <rect x="14" y="14" width="16" height="16" rx="2" fill="currentColor" fill-opacity="0.15"/>
+            <rect x="26" y="6"  width="16" height="16" rx="2"/>
+            <rect x="6"  y="26" width="16" height="16" rx="2"/>
+            <rect x="26" y="26" width="16" height="16" rx="2" fill="currentColor" fill-opacity="0.3"/>
+          </svg>
+          <div>
+            <h3 class="feature-title mb-2">Double-Sided Tiles</h3>
+            <p class="feature-body">
+              Create your battle map with your choice of sand, water, stone, castle, grass, and more.
+              Double-sided tiles get you more creative bang for your buck.
+            </p>
+          </div>
+        </div>
+
+        <!-- Magnetic Connection -->
+        <div class="feature-block py-9">
+          <svg class="feature-icon-green" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 48 48" aria-hidden="true">
+            <!-- Horseshoe magnet -->
+            <path d="M8 8 h6 v22 a10 10 0 0 0 20 0 V8 h6" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="8"  y="34" width="7" height="5" rx="0" fill="currentColor" stroke="none"/>
+            <rect x="33" y="34" width="7" height="5" rx="0" fill="currentColor" stroke="none"/>
+          </svg>
+          <div>
+            <h3 class="feature-title mb-2">Magnetic Connection</h3>
+            <p class="feature-body">
+              Our magnetic dungeon tiles' lightweight and easily interchangeable design makes setup
+              a breeze. No tin trays. No finger-aching clips. Just terrain that seemingly builds itself.
+            </p>
+          </div>
+        </div>
+
+        <!-- Modular Terrain -->
+        <div class="feature-block py-9 last:pb-0">
+          <svg class="feature-icon-green" fill="currentColor" viewBox="0 0 48 48" aria-hidden="true">
+            <!-- Mountain / triangle shapes -->
+            <polygon points="24,4 44,40 4,40" fill-opacity="0.9"/>
+            <polygon points="12,40 28,14 44,40" fill="white" fill-opacity="0.35"/>
+          </svg>
+          <div>
+            <h3 class="feature-title mb-2">Modular Terrain</h3>
+            <p class="feature-body">
+              Embark on epic adventures anytime, anywhere. Our terrain is the dynamic solution
+              for any tabletop or war game that works with the standard 25mm scale.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{# ═══════════════════════════════════════════════════════
+   Smoke divider — white → black
+═══════════════════════════════════════════════════════ #}
+<div class="bg-white smoke-divider -mb-px" aria-hidden="true">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" class="w-full block" style="height:60px;">
+    <path d="M0,0 C200,55 400,5 640,35 C800,55 1000,5 1200,38 C1300,50 1380,20 1440,0 L1440,60 L0,60 Z"
+          fill="#0a0a0a"/>
+  </svg>
+</div>
+
+
+{# ═══════════════════════════════════════════════════════
+   KITS  — black background, product card row
+   "Explore Our Kits"
+═══════════════════════════════════════════════════════ #}
+<section id="kits" class="bg-[#000000] py-20 sm:py-28" aria-label="Explore kits">
+  <div class="mx-auto max-w-container px-5 sm:px-8">
+
+    <!-- Section header row -->
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
+      <div>
+        <span class="section-eyebrow-light">Themed Packages</span>
+        <h2 class="heading-light">Explore Our Kits</h2>
+      </div>
+      <a href="/kits" class="btn-cta shrink-0 text-xs">Shop All Kits</a>
+    </div>
+
+    <!-- Kit cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {% set kits = products | selectattr("category", "equalto", "kits") if products else [] %}
+      {% for p in products %}
+        {% if p.category === 'kits' %}
+          {#
+            Full-card link — entire card is clickable.
+            TODO: replace href with Hostinger checkout/PDP URL when ready.
+          #}
+          <a href="{{ p.slug }}"
+             class="product-card-dark group block no-underline
+                    focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2
+                    focus-visible:outline-none focus-visible:ring-offset-[#000000]"
+             aria-label="{{ p.name }}{% if p.priceLabel %} — {{ p.priceLabel }}{% endif %}">
+
+            {# Thumbnail — TODO: replace with real product photography #}
+            <div class="relative h-52 {{ p.thumb }} overflow-hidden">
+              {% if p.badge %}
+                <span class="absolute top-3 left-3 px-2 py-0.5 bg-brand-red text-white
+                             text-[10px] font-sans font-bold tracking-widest uppercase">
+                  {{ p.badge }}
+                </span>
+              {% endif %}
+            </div>
+
+            <div class="p-4">
+              <h3 class="text-[13px] font-sans font-bold text-white tracking-[0.05em] uppercase mb-1
+                         group-hover:text-brand-green transition-colors leading-snug">
+                {{ p.name }}
+              </h3>
+              {% if p.description %}
+                <p class="text-zinc-500 text-[12px] leading-relaxed mb-3 line-clamp-2">{{ p.description }}</p>
+              {% endif %}
+              <div class="flex items-center justify-between pt-2 border-t border-zinc-800">
+                <span class="text-brand-green font-sans font-bold text-[13px] tracking-wide">
+                  {{ p.priceLabel }}
+                </span>
+                <span class="text-[10px] font-sans font-bold tracking-widest uppercase
+                             text-zinc-500 group-hover:text-white transition-colors"
+                      aria-hidden="true">
+                  View →
+                </span>
+              </div>
+            </div>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+
+{# ═══════════════════════════════════════════════════════
+   Smoke divider — black → white
+═══════════════════════════════════════════════════════ #}
+<div class="bg-[#000000] smoke-divider -mb-px" aria-hidden="true">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" class="w-full block" style="height:60px;">
+    <path d="M0,0 C180,55 360,8 600,38 C780,60 960,10 1140,36 C1280,54 1380,18 1440,0 L1440,60 L0,60 Z"
+          fill="white"/>
+  </svg>
+</div>
+
+
+{# ═══════════════════════════════════════════════════════
+   BUILD & CHANGE  — white background
+   "Insanely Intuitive to Build & Change" + "Modular & Versatile"
+═══════════════════════════════════════════════════════ #}
+<section class="bg-white py-20 sm:py-28" aria-label="How it works">
+  <div class="mx-auto max-w-container px-5 sm:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+      <!-- Text side -->
+      <div>
+        <h2 class="heading-dark mb-6 leading-tight">
+          Insanely Intuitive<br />to Build &amp; Change
+        </h2>
+        <p class="body-dark mb-6">
+          You prepared a castle before the game, but the players wanted to go to the forest?
+          Happens all the time. Epochscapes makes it easy to completely shift the scene in minutes.
+        </p>
+        <p class="body-dark mb-8">
+          Take your dungeon terrain to a new level. Let your players fight the monster when it's
+          best for the story. Let them find the hidden gold with dynamic scenery.
+          Make unbounded arenas that befit their miniatures.
+        </p>
+
+        <h3 class="subheading-dark mb-4">Modular &amp; Versatile</h3>        <p class="body-dark mb-8">
+          Keep your players highly engaged with Epoch Tile's detailed custom pieces while building
+          a tabletop fantasy world from your imagination.
+        </p>
+
+        <a href="/products" class="btn-cta inline-flex">Shop All Products</a>
+      </div>
+
+      <!-- Lifestyle photo placeholder + product image trio -->
+      <div class="space-y-4">
+
+        {#
+          Lifestyle photo — TODO: replace with the 2-person gameplay photography.
+          Description from Figma: two adults building terrain at a table, warm lighting,
+          watercolor painted edges.
+        #}
+        <div class="relative h-64 sm:h-72 overflow-hidden bg-zinc-100 border border-zinc-200">
+          <!-- Photo placeholder -->
+          <div class="absolute inset-0 bg-gradient-to-br from-amber-50 via-stone-100 to-zinc-100
+                      flex items-center justify-center">
+            <div class="text-center">
+              <svg class="w-12 h-12 text-zinc-300 mx-auto mb-2" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 7.5h18m-1.5 0a1.5 1.5 0 01-1.5 1.5H4.5A1.5 1.5 0 013 7.5m18 0V18a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18V7.5"/>
+              </svg>
+              <p class="text-xs text-zinc-400 font-sans italic">
+                Lifestyle photo — people building terrain
+                {# TODO: Add gameplay lifestyle photography #}
+              </p>
+            </div>
+          </div>
+          <!-- Watercolor edge treatment -->
+          <div class="absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-white to-transparent"></div>
+        </div>
+
+        <!-- Three product image placeholders (Figma shows 3 rectangular boxes) -->
+        <div class="grid grid-cols-3 gap-3">
+          {% for tile in ['Stone & Water', 'Castle & Grass', 'Sand & Water'] %}
+            <div class="h-24 sm:h-28 thumb-tiles flex items-end p-2 border border-zinc-100">
+              <span class="text-[9px] text-white/50 font-display tracking-widest uppercase leading-tight">
+                {{ tile }}
+              </span>
+            </div>
+          {% endfor %}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{# ═══════════════════════════════════════════════════════
+   Smoke divider — white → black
+═══════════════════════════════════════════════════════ #}
+<div class="bg-white smoke-divider -mb-px" aria-hidden="true">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" class="w-full block" style="height:60px;">
+    <path d="M0,0 C240,60 420,0 660,40 C840,65 1020,5 1260,40 C1340,52 1400,20 1440,0 L1440,60 L0,60 Z"
+          fill="#0a0a0a"/>
+  </svg>
+</div>
+
+
+{# ═══════════════════════════════════════════════════════
+   BATTLE MAPS  — dark background
+   "Create Battle Maps on the Fly"
+═══════════════════════════════════════════════════════ #}
+<section id="battle-maps" class="bg-[#000000] py-20 sm:py-28 overflow-hidden" aria-label="Create battle maps">
+  <div class="mx-auto max-w-container px-5 sm:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+      <!-- Text -->
+      <div>
+        <span class="section-eyebrow-light">DM-Ready Terrain</span>
+        <h2 class="heading-light mb-6 leading-tight">
+          Create Battle Maps<br />on the Fly
+        </h2>
+        <p class="body-light mb-6">
+          Keep your players highly engaged with Epoch Tile's detailed custom pieces while building
+          a tabletop fantasy world from your imagination.
+        </p>
+        <p class="body-light mb-8">
+          Unchain your terrain with limitless combinations of tiles, walls, and detailed scenery.
+          The options are endless.
+        </p>
+        <a href="/products" class="btn-cta inline-flex">Shop Now</a>
+      </div>
+
+      <!-- Terrain in action — photo placeholder -->
+      <div class="relative">
+        {#
+          TODO: replace with lifestyle photo of terrain & miniatures in gaming scenario.
+          Figma shows dramatic tabletop setup photo.
+        #}
+        <div class="relative h-80 sm:h-96 bg-zinc-900 border border-zinc-800 overflow-hidden">
+          <!-- Atmospheric placeholder for gaming photo -->
+          <div class="absolute inset-0 bg-gradient-to-br from-purple-950/40 via-zinc-900 to-[#000000]"></div>
+
+          <!-- CSS terrain grid suggestion -->
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="grid grid-cols-4 gap-1.5 opacity-60">
+              {% set battleTiles = [
+                'from-stone-800 to-stone-900',
+                'from-stone-700 to-stone-800',
+                'from-blue-900 to-slate-900',
+                'from-stone-800 to-zinc-900',
+                'from-stone-700 to-stone-800',
+                'from-stone-800 to-stone-900',
+                'from-stone-800 to-stone-900',
+                'from-green-900 to-emerald-950',
+                'from-blue-900 to-slate-900',
+                'from-stone-800 to-stone-900',
+                'from-stone-700 to-stone-800',
+                'from-stone-800 to-zinc-900'
+              ] %}
+              {% for c in battleTiles %}
+                <div class="w-14 h-14 rounded-sm bg-gradient-to-br {{ c }} border border-white/5"></div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <!-- Overlaid miniature dots -->
+          <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2
+                      w-3 h-3 rounded-full bg-brand-red shadow-[0_0_12px_rgba(231,76,60,0.8)]"></div>
+          <div class="absolute top-1/2 left-1/3
+                      w-2.5 h-2.5 rounded-full bg-blue-400 shadow-[0_0_10px_rgba(96,165,250,0.8)]"></div>
+
+          <p class="absolute inset-0 flex items-end justify-center pb-4
+                    text-[10px] text-zinc-600 font-sans italic">
+            {# TODO: Add gaming lifestyle photography #}
+          </p>
+          <!-- Bottom watercolor fade -->
+          <div class="absolute inset-x-0 bottom-0 h-16
+                      bg-gradient-to-t from-[#000000] to-transparent"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+{# ═══════════════════════════════════════════════════════
+   Smoke divider — black → white
+═══════════════════════════════════════════════════════ #}
+<div class="bg-[#000000] smoke-divider -mb-px" aria-hidden="true">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" class="w-full block" style="height:60px;">
+    <path d="M0,0 C160,58 320,4 560,35 C720,55 900,8 1080,35 C1220,55 1360,12 1440,0 L1440,60 L0,60 Z"
+          fill="white"/>
+  </svg>
+</div>
+
+
+{# ═══════════════════════════════════════════════════════
+   TILES GALLERY  — white background
+   "Landscapes as Diverse…" (product gallery variant)
+═══════════════════════════════════════════════════════ #}
+<section id="tiles" class="bg-white py-20 sm:py-28" aria-label="Tile packs gallery">
+  <div class="mx-auto max-w-container px-5 sm:px-8">
+
+    <!-- Section header + HTMX filter -->
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
+      <div>
+        <span class="section-eyebrow">The Full Collection</span>
+        <h2 class="heading-dark">
+          Landscapes as Diverse as<br class="hidden sm:block"/>Your Imagination
+        </h2>
+      </div>
+
+      <div class="flex gap-2 shrink-0" role="tablist" aria-label="Filter by category">
+        <button
+          class="px-4 py-2 text-[10px] font-display font-semibold tracking-widest uppercase
+                 bg-[#000000] text-white transition-colors"
+          hx-get="/partials/products"
+          hx-target="#product-grid"
+          hx-swap="innerHTML"
+          hx-indicator="#product-loading"
+          role="tab" aria-selected="true"
+        >All</button>
+        <button
+          class="px-4 py-2 text-[10px] font-display font-semibold tracking-widest uppercase
+                 bg-zinc-100 text-zinc-600 hover:bg-zinc-200 transition-colors"
+          hx-get="/partials/products?category=kits"
+          hx-target="#product-grid"
+          hx-swap="innerHTML"
+          hx-indicator="#product-loading"
+          role="tab" aria-selected="false"
+        >Kits</button>
+        <button
+          class="px-4 py-2 text-[10px] font-display font-semibold tracking-widest uppercase
+                 bg-zinc-100 text-zinc-600 hover:bg-zinc-200 transition-colors"
+          hx-get="/partials/products?category=tiles"
+          hx-target="#product-grid"
+          hx-swap="innerHTML"
+          hx-indicator="#product-loading"
+          role="tab" aria-selected="false"
+        >Tiles</button>
+        <button
+          class="px-4 py-2 text-[10px] font-display font-semibold tracking-widest uppercase
+                 bg-zinc-100 text-zinc-600 hover:bg-zinc-200 transition-colors"
+          hx-get="/partials/products?category=accessories"
+          hx-target="#product-grid"
+          hx-swap="innerHTML"
+          hx-indicator="#product-loading"
+          role="tab" aria-selected="false"
+        >Accessories</button>
+      </div>
+    </div>
+
+    <!-- Loading indicator -->
+    <div id="product-loading" class="htmx-indicator flex justify-center py-8" aria-live="polite">
+      <div class="w-5 h-5 border-2 border-zinc-200 border-t-brand-green rounded-full animate-spin"></div>
+    </div>
+
+    <!-- Product grid — HTMX target -->
+    <div id="product-grid">
+      {% include "partials/product-grid.njk" %}
+    </div>
+
+  </div>
+</section>
+
+
+{# ═══════════════════════════════════════════════════════
+   STAY UPDATED  — white background, email + social icons
+                  + Elfsight social feed (placeholder until
+                    ELFSIGHT_APP_ID is set in .env)
+═══════════════════════════════════════════════════════ #}
+<section class="bg-zinc-50 border-t border-zinc-100 py-16 sm:py-20" aria-label="Newsletter and social feed">
+  <div class="mx-auto max-w-container px-5 sm:px-8">
+
+    {# ── Email signup + social icons (centred) ── #}
+    <div class="max-w-xl mx-auto text-center mb-14">
+
+      <h2 class="heading-dark text-2xl sm:text-3xl mb-3">Stay Updated</h2>
+      <p class="body-dark text-sm mb-8">
+        New kits, terrain ideas, and DM tips — straight to your inbox.
+      </p>
+
+      {# TODO: Hook to email marketing service (Mailchimp, ConvertKit, etc.) #}
+      <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-10"
+            onsubmit="event.preventDefault(); alert('Email signup coming soon!')">
+        <label for="newsletter-email" class="sr-only">Email address</label>
+        <input
+          id="newsletter-email"
+          type="email"
+          name="email"
+          placeholder="Your email address"
+          required
+          class="flex-1 px-4 py-3 border border-zinc-300 text-sm font-sans
+                 focus:outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green
+                 bg-white"
+        />
+        <button type="submit" class="btn-cta text-xs py-3 px-6 shrink-0">Subscribe</button>
+      </form>
+
+      <!-- Social icon row -->
+      <div class="flex items-center justify-center gap-5" aria-label="Social media links">
+        <!-- YouTube -->
+        <a href="#" aria-label="Epochscapes on YouTube"
+           class="text-brand-green hover:text-brand-green-dark transition-colors">
+          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5a3 3 0 00-2.1 2.1C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/>
+          </svg>
+        </a>
+        <!-- Instagram -->
+        <a href="#" aria-label="Epochscapes on Instagram"
+           class="text-brand-green hover:text-brand-green-dark transition-colors">
+          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+          </svg>
+        </a>
+        <!-- X / Twitter -->
+        <a href="#" aria-label="Epochscapes on X"
+           class="text-brand-green hover:text-brand-green-dark transition-colors">
+          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </a>
+        <!-- Facebook -->
+        <a href="#" aria-label="Epochscapes on Facebook"
+           class="text-brand-green hover:text-brand-green-dark transition-colors">
+          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    {# ── Elfsight social feed ────────────────────────────
+       To activate: add ELFSIGHT_APP_ID=<your-app-uuid> to
+       .env and restart the server. That's the only change
+       needed — no template edits required.
+    ─────────────────────────────────────────────────── #}
+    {% if elfsightAppId %}
+
+      {# ✅ Live Elfsight embed — renders once ELFSIGHT_APP_ID is set #}
+      <div class="elfsight-social-feed" data-section="stay-updated">
+        <script src="https://static.elfsight.com/platform/platform.js" async></script>
+        <div class="elfsight-app-{{ elfsightAppId }}"
+             data-elfsight-app-lazy
+             aria-label="Social media feed"></div>
+      </div>
+
+    {% else %}
+
+      {# 🔲 Placeholder — swapped out by setting ELFSIGHT_APP_ID in .env #}
+      <div
+        class="border-2 border-dashed border-zinc-200 bg-white
+               rounded-sm min-h-[280px] flex flex-col items-center justify-center
+               gap-4 p-8 text-center"
+        data-placeholder="elfsight-social-feed"
+        aria-label="Social feed placeholder"
+        role="region"
+      >
+        <!-- Icon: social grid -->
+        <svg class="w-10 h-10 text-zinc-300" fill="none" stroke="currentColor" stroke-width="1.5"
+             viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM2.25 14.625c0-.621.504-1.125 1.125-1.125h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM13.5 6.375c0-.621.504-1.125 1.125-1.125h6c.621 0 1.125.504 1.125 1.125v6.75c0 .621-.504 1.125-1.125 1.125h-6A1.125 1.125 0 0113.5 13.125V6.375z"/>
+        </svg>
+
+        <div>
+          <p class="text-sm font-display font-semibold tracking-widest uppercase text-zinc-400 mb-1">
+            Social Feed
+          </p>
+          <p class="text-xs text-zinc-400 font-sans max-w-xs leading-relaxed">
+            Elfsight widget goes here. Set
+            <code class="bg-zinc-100 px-1.5 py-0.5 font-mono text-zinc-500">ELFSIGHT_APP_ID</code>
+            in <code class="bg-zinc-100 px-1.5 py-0.5 font-mono text-zinc-500">.env</code>
+            and restart the server to activate.
+          </p>
+        </div>
+
+        {# Grid skeleton suggesting post thumbnails #}
+        <div class="grid grid-cols-3 sm:grid-cols-6 gap-2 w-full max-w-lg mt-2"
+             aria-hidden="true">
+          {% for i in range(0, 6) %}
+            <div class="aspect-square bg-zinc-100 rounded-sm animate-pulse"></div>
+          {% endfor %}
+        </div>
+      </div>
+
+    {% endif %}
+
+  </div>
+</section>
+
+
+{# ═══════════════════════════════════════════════════════
+   JOIN THE ADVENTURE  — dark illustrated bg, email CTA
+   (Figma: castle/mountains silhouette, atmospheric illustration)
+═══════════════════════════════════════════════════════ #}
+<section class="relative bg-[#000000] overflow-hidden py-20 sm:py-32" aria-label="Join the adventure">
+
+  <!-- Atmospheric bg — TODO: Replace with castle/mountains illustration -->
+  <div class="absolute inset-0 bg-join-bg" aria-hidden="true"></div>
+
+  <!-- CSS castle silhouette -->
+  <div class="absolute bottom-0 inset-x-0 flex items-end justify-center pointer-events-none"
+       aria-hidden="true">
+    <!-- Mountain ranges -->
+    <div class="relative w-full max-w-3xl mx-auto h-40 opacity-20">
+      <svg viewBox="0 0 1440 160" preserveAspectRatio="none" class="w-full h-full">
+        <!-- Far mountains -->
+        <polygon points="0,160 200,40 400,120 600,20 800,100 1000,30 1200,110 1440,50 1440,160" fill="white" opacity="0.4"/>
+        <!-- Mid mountains -->
+        <polygon points="0,160 300,80 500,140 700,60 900,130 1100,50 1300,120 1440,70 1440,160" fill="white" opacity="0.3"/>
+        <!-- Castle towers -->
+        <rect x="650" y="60" width="20" height="100" fill="white"/>
+        <rect x="655" y="50" width="5"  height="10" fill="white"/>
+        <rect x="663" y="50" width="5"  height="10" fill="white"/>
+        <rect x="671" y="50" width="5"  height="10" fill="white"/>
+        <rect x="770" y="70" width="16" height="90"  fill="white"/>
+        <rect x="775" y="60" width="4"  height="10" fill="white"/>
+        <rect x="782" y="60" width="4"  height="10" fill="white"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 mx-auto max-w-lg px-5 sm:px-8 text-center">
+    <h2 class="font-display font-bold text-white text-4xl sm:text-5xl lg:text-6xl uppercase
+               leading-tight tracking-tight mb-4">
+      Join the<br />Adventure
+    </h2>
+    <p class="text-white/60 text-base mb-8">
+      Get exclusive discounts, new product announcements, and inspiration for your next session.
+    </p>
+
+    {# TODO: Hook to email marketing service #}
+    <form class="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto"
+          onsubmit="event.preventDefault(); alert('Email signup coming soon!')">
+      <label for="adventure-email" class="sr-only">Email address</label>
+      <input
+        id="adventure-email"
+        type="email"
+        name="email"
+        placeholder="Your email address"
+        required
+        class="flex-1 px-4 py-3 bg-white/10 border border-white/20 text-white text-sm font-sans
+               placeholder-white/40
+               focus:outline-none focus:border-white/60 focus:bg-white/15"
+      />
+      <button type="submit" class="btn-cta text-xs py-3 px-6 shrink-0">Join Now</button>
+    </form>
+  </div>
+</section>
+
+{% endblock %}
