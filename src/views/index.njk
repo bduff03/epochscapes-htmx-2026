@@ -1,0 +1,631 @@
+{% extends "base.njk" %}
+
+{% block content %}
+
+{# ═══════════════════════════════════════════════════════════
+   HERO
+════════════════════════════════════════════════════════════ #}
+<section
+  id="hero"
+  class="relative min-h-screen flex items-center overflow-hidden
+         bg-brand-bg bg-hero-glow"
+  aria-label="Hero"
+>
+  <!-- Tile grid background pattern -->
+  <div class="absolute inset-0 bg-tile-pattern bg-tile opacity-100 pointer-events-none" aria-hidden="true"></div>
+
+  <!-- Radial vignette -->
+  <div class="absolute inset-0 bg-radial-[ellipse_at_center] from-transparent to-brand-bg/90 pointer-events-none" aria-hidden="true"></div>
+
+  <!-- Decorative tile cluster — right side, desktop only -->
+  <div class="absolute right-0 top-1/2 -translate-y-1/2 w-[520px] h-[520px]
+              hidden lg:block pointer-events-none"
+       aria-hidden="true">
+    <div class="relative w-full h-full">
+      {% set tiles = [
+        {x:'0',    y:'0',    fill:'0.06', stroke:'0.35', size:'160'},
+        {x:'168',  y:'0',    fill:'0.12', stroke:'0.5',  size:'160'},
+        {x:'336',  y:'0',    fill:'0.04', stroke:'0.25', size:'160'},
+        {x:'0',    y:'168',  fill:'0.10', stroke:'0.45', size:'160'},
+        {x:'168',  y:'168',  fill:'0.20', stroke:'0.7',  size:'160'},
+        {x:'336',  y:'168',  fill:'0.08', stroke:'0.35', size:'160'},
+        {x:'84',   y:'336',  fill:'0.06', stroke:'0.3',  size:'160'},
+        {x:'252',  y:'336',  fill:'0.14', stroke:'0.5',  size:'160'}
+      ] %}
+      {% for t in tiles %}
+        <div class="absolute rounded-xl border border-brand-gold/[{{ t.stroke }}]
+                    bg-brand-gold/[{{ t.fill }}]"
+             style="left:{{ t.x }}px; top:{{ t.y }}px; width:{{ t.size }}px; height:{{ t.size }}px; opacity: 0.8">
+        </div>
+      {% endfor %}
+      <!-- Center magnetic dot -->
+      <div class="absolute left-[248px] top-[248px] w-3 h-3 rounded-full bg-brand-gold shadow-[0_0_20px_6px_rgba(201,162,39,0.5)]"></div>
+    </div>
+  </div>
+
+  <!-- Hero content -->
+  <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-32 pt-40">
+    <div class="max-w-xl">
+      <span class="section-label">Epoch Possibilities LLC</span>
+
+      <h1 class="font-display font-bold text-5xl sm:text-6xl lg:text-7xl leading-[1.05] text-white mb-6">
+        Build Your Next<br />
+        <span class="text-gradient">Great Adventure</span>
+      </h1>
+
+      <p class="text-brand-muted text-lg sm:text-xl leading-relaxed mb-10 max-w-md">
+        Intuitive, magnetic dungeon tiles that let any dungeon master build breathtaking battle maps
+        before their players' eyes. The terrain that keeps up with your story.
+      </p>
+
+      <div class="flex flex-wrap gap-4">
+        <a href="/#categories" class="btn-primary text-sm">
+          Explore Kits
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+          </svg>
+        </a>
+        <a href="/#categories" class="btn-outline text-sm">Browse Tiles</a>
+      </div>
+
+      <!-- Social proof chips -->
+      <div class="mt-12 flex flex-wrap items-center gap-5">
+        <div class="flex items-center gap-2 text-xs text-brand-muted">
+          <svg class="w-4 h-4 text-brand-gold" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+          </svg>
+          Magnetic connection
+        </div>
+        <div class="w-px h-4 bg-brand-border" aria-hidden="true"></div>
+        <div class="flex items-center gap-2 text-xs text-brand-muted">
+          <svg class="w-4 h-4 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/>
+          </svg>
+          Double-sided tiles
+        </div>
+        <div class="w-px h-4 bg-brand-border" aria-hidden="true"></div>
+        <div class="flex items-center gap-2 text-xs text-brand-muted">
+          <svg class="w-4 h-4 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15"/>
+          </svg>
+          25mm scale compatible
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom fade to next section -->
+  <div class="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-brand-bg to-transparent pointer-events-none" aria-hidden="true"></div>
+</section>
+
+{# ═══════════════════════════════════════════════════════════
+   CATEGORY SPLIT — Kits / Tiles
+════════════════════════════════════════════════════════════ #}
+<section id="categories" class="relative bg-brand-bg py-20 sm:py-24" aria-label="Shop categories">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-12">
+      <span class="section-label">Start Exploring</span>
+      <h2 class="section-heading">What Are You Building Today?</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <!-- KITS card -->
+      <a href="/kits"
+         class="group relative rounded-2xl overflow-hidden border border-brand-border
+                bg-brand-surface min-h-[340px] flex flex-col justify-end p-8
+                transition-all duration-300
+                hover:border-brand-gold/50 hover:shadow-[0_8px_48px_rgba(201,162,39,0.18)]"
+         aria-label="Shop Kits">
+
+        <!-- Gradient backdrop -->
+        <div class="absolute inset-0 bg-gradient-to-br from-amber-950/80 via-yellow-950/40 to-transparent
+                    opacity-70 group-hover:opacity-90 transition-opacity duration-300" aria-hidden="true"></div>
+
+        <!-- Tile pattern overlay -->
+        <div class="absolute inset-0 bg-tile-pattern bg-tile opacity-30" aria-hidden="true"></div>
+
+        <!-- Decorative icon grid -->
+        <div class="absolute top-6 right-6 grid grid-cols-3 gap-2 opacity-30 group-hover:opacity-50 transition-opacity" aria-hidden="true">
+          {% for i in range(0, 9) %}
+            <div class="w-10 h-10 rounded border border-brand-gold/40 bg-brand-gold/10
+                        {% if i == 4 %}bg-brand-gold/25 border-brand-gold/70{% endif %}"></div>
+          {% endfor %}
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10">
+          <p class="text-brand-gold text-xs font-sans font-semibold tracking-widest uppercase mb-2">Full Scene Packages</p>
+          <h3 class="font-display text-4xl font-bold text-white mb-3">Kits</h3>
+          <p class="text-brand-muted text-sm mb-6 max-w-xs leading-relaxed">
+            Complete terrain packages — tiles, walls, accessories, and themed pieces to build an entire encounter from scratch.
+            Starting at&nbsp;<span class="text-white font-medium">$95</span>.
+          </p>
+          <span class="btn-primary text-sm inline-flex">
+            Shop Kits
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- TILES card -->
+      <a href="/tiles"
+         class="group relative rounded-2xl overflow-hidden border border-brand-border
+                bg-brand-surface min-h-[340px] flex flex-col justify-end p-8
+                transition-all duration-300
+                hover:border-brand-gold/50 hover:shadow-[0_8px_48px_rgba(100,80,200,0.18)]"
+         aria-label="Shop Tile Packs">
+
+        <div class="absolute inset-0 bg-gradient-to-br from-indigo-950/80 via-purple-950/40 to-transparent
+                    opacity-70 group-hover:opacity-90 transition-opacity duration-300" aria-hidden="true"></div>
+        <div class="absolute inset-0 bg-tile-pattern bg-tile opacity-30" aria-hidden="true"></div>
+
+        <!-- Decorative staggered tiles -->
+        <div class="absolute top-6 right-6 opacity-30 group-hover:opacity-50 transition-opacity" aria-hidden="true">
+          <div class="grid grid-cols-2 gap-2">
+            {% for i in range(0, 4) %}
+              <div class="w-16 h-10 rounded border border-indigo-400/40 bg-indigo-400/10
+                          {% if i == 1 or i == 2 %}mt-4{% endif %}"></div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="relative z-10">
+          <p class="text-indigo-400 text-xs font-sans font-semibold tracking-widest uppercase mb-2">Mix & Match Packs</p>
+          <h3 class="font-display text-4xl font-bold text-white mb-3">Tiles</h3>
+          <p class="text-brand-muted text-sm mb-6 max-w-xs leading-relaxed">
+            Packs of 12 double-sided tiles in dozens of terrain combinations. Expand your collection one pack at a time.
+            Starting at&nbsp;<span class="text-white font-medium">$30</span>.
+          </p>
+          <span class="btn-outline text-sm inline-flex border-indigo-400/60 text-indigo-300 hover:bg-indigo-500 hover:text-white hover:border-indigo-500">
+            Shop Tiles
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+            </svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+{# ═══════════════════════════════════════════════════════════
+   FEATURES — Landscapes as Diverse as your Imagination
+════════════════════════════════════════════════════════════ #}
+<section id="features" class="bg-brand-surface border-y border-brand-border py-20 sm:py-28" aria-label="Key features">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+    <div class="text-center mb-16">
+      <span class="section-label">Why Epochscapes</span>
+      <h2 class="section-heading max-w-2xl mx-auto">
+        Landscapes as Diverse as<br class="hidden sm:block" /> Your Imagination
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+
+      <!-- Feature 1 -->
+      <div class="text-center md:text-left group">
+        <div class="feature-icon mx-auto md:mx-0 group-hover:bg-brand-gold/20 transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl font-semibold text-white mb-3">Double-Sided Tiles</h3>
+        <p class="text-brand-muted text-sm leading-relaxed">
+          Create fantasy worlds with your choice of sand, water, cave, castle, grass, and more.
+          Double-sided tiles get you more creative bang for your buck — two biomes in every pack.
+        </p>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="text-center md:text-left group">
+        <div class="feature-icon mx-auto md:mx-0 group-hover:bg-brand-gold/20 transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M9 3.75H6.912a2.25 2.25 0 00-2.15 1.588L2.35 13.177a2.25 2.25 0 00-.1.661V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 00-2.15-1.588H15"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl font-semibold text-white mb-3">Magnetic Connection</h3>
+        <p class="text-brand-muted text-sm leading-relaxed">
+          Lightweight and easily interchangeable design makes setup a breeze. No tin trays.
+          No finger-aching clips. Just terrain that seemingly builds itself — snap and play.
+        </p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="text-center md:text-left group">
+        <div class="feature-icon mx-auto md:mx-0 group-hover:bg-brand-gold/20 transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl font-semibold text-white mb-3">Modular Terrain</h3>
+        <p class="text-brand-muted text-sm leading-relaxed">
+          Embark on epic adventures anytime, anywhere. Epochscapes works with the standard
+          25mm scale and combines with any miniature collection you already own.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ═══════════════════════════════════════════════════════════
+   STORY BLOCK 1 — Insanely Intuitive
+════════════════════════════════════════════════════════════ #}
+<section class="bg-brand-bg py-20 sm:py-28 overflow-hidden" aria-label="How Epochscapes works">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+      <!-- Visual: animated tile-building illustration -->
+      <div class="relative" aria-hidden="true">
+        <div class="relative mx-auto max-w-sm lg:max-w-none">
+          <!-- Outer glow -->
+          <div class="absolute inset-0 bg-brand-gold/5 rounded-3xl blur-3xl scale-110"></div>
+
+          <!-- Main grid illustration -->
+          <div class="relative bg-brand-surface rounded-2xl border border-brand-border p-6 sm:p-8">
+            <!-- Tile grid -->
+            <div class="grid grid-cols-4 gap-2 mb-2">
+              {% set story1tiles = [
+                {label:'Castle', color:'from-stone-800 to-stone-900', lit: false},
+                {label:'Castle', color:'from-stone-800 to-stone-900', lit: true},
+                {label:'Forest', color:'from-green-900 to-emerald-950', lit: false},
+                {label:'Forest', color:'from-green-900 to-emerald-950', lit: false},
+                {label:'Sand',   color:'from-yellow-900 to-amber-950', lit: false},
+                {label:'Castle', color:'from-stone-800 to-stone-900',  lit: true},
+                {label:'Castle', color:'from-stone-800 to-stone-900',  lit: true},
+                {label:'Water',  color:'from-blue-900 to-blue-950',    lit: false},
+                {label:'Sand',   color:'from-yellow-900 to-amber-950', lit: false},
+                {label:'Sand',   color:'from-yellow-900 to-amber-950', lit: false},
+                {label:'Castle', color:'from-stone-800 to-stone-900',  lit: true},
+                {label:'Cave',   color:'from-gray-900 to-zinc-950',    lit: false},
+                {label:'Water',  color:'from-blue-900 to-blue-950',    lit: false},
+                {label:'Water',  color:'from-blue-900 to-blue-950',    lit: false},
+                {label:'Cave',   color:'from-gray-900 to-zinc-950',    lit: false},
+                {label:'Cave',   color:'from-gray-900 to-zinc-950',    lit: false}
+              ] %}
+              {% for t in story1tiles %}
+                <div class="aspect-square rounded bg-gradient-to-br {{ t.color }}
+                            border {% if t.lit %}border-brand-gold/60{% else %}border-brand-border{% endif %}
+                            relative overflow-hidden">
+                  {% if t.lit %}
+                    <div class="absolute inset-0 bg-brand-gold/8"></div>
+                    <div class="absolute bottom-1 right-1 w-1.5 h-1.5 rounded-full bg-brand-gold/80 shadow-[0_0_4px_rgba(201,162,39,0.9)]"></div>
+                  {% endif %}
+                </div>
+              {% endfor %}
+            </div>
+
+            <!-- Legend -->
+            <div class="flex flex-wrap gap-3 mt-4 pt-4 border-t border-brand-border">
+              {% set legend = [
+                {label:'Castle', dot:'bg-stone-600'},
+                {label:'Forest', dot:'bg-emerald-700'},
+                {label:'Sand',   dot:'bg-amber-700'},
+                {label:'Water',  dot:'bg-blue-700'}
+              ] %}
+              {% for l in legend %}
+                <div class="flex items-center gap-1.5">
+                  <div class="w-2.5 h-2.5 rounded-sm {{ l.dot }}"></div>
+                  <span class="text-xs text-brand-muted">{{ l.label }}</span>
+                </div>
+              {% endfor %}
+              <div class="flex items-center gap-1.5 ml-auto">
+                <div class="w-2.5 h-2.5 rounded-full bg-brand-gold shadow-[0_0_6px_rgba(201,162,39,0.7)]"></div>
+                <span class="text-xs text-brand-gold">Magnetic</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div>
+        <span class="section-label">Scene Flexibility</span>
+        <h2 class="section-heading mb-6">
+          Insanely Intuitive to Build<br />
+          <span class="text-gradient">(And Change)</span>
+        </h2>
+        <div class="space-y-4 text-brand-muted text-base leading-relaxed">
+          <p>
+            You prepared a castle before the game, but the players wanted to go to the forest?
+            Happens all the time. Epochscapes makes it easy to completely shift the scene in minutes.
+          </p>
+          <p>
+            Take your dungeon terrain to a new level. Let your players fight the monster when it's best
+            for the story. Let them find the hidden gold with dynamic scenery. Make unbounded arenas
+            that befit their miniatures.
+          </p>
+          <p>
+            Learn what it feels like to have terrain that makes you more flexible, not less.
+          </p>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="/#categories" class="btn-primary text-sm">Shop Kits</a>
+          <a href="/#features"   class="btn-ghost text-sm">How it works ↓</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{# ═══════════════════════════════════════════════════════════
+   PRODUCTS — Modular & Versatile
+════════════════════════════════════════════════════════════ #}
+<section id="products" class="bg-brand-surface border-y border-brand-border py-20 sm:py-28" aria-label="Featured products">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
+      <div>
+        <span class="section-label">The Collection</span>
+        <h2 class="section-heading">Modular &amp; Versatile</h2>
+        <p class="text-brand-muted text-base mt-3 max-w-lg leading-relaxed">
+          Keep your players highly engaged with Epoch Tile's detailed custom pieces while
+          building a tabletop fantasy world from your imagination.
+        </p>
+      </div>
+
+      {# Category filter tabs — HTMX-powered #}
+      <div class="flex gap-2 shrink-0" role="tablist" aria-label="Filter products by category">
+        <button
+          class="px-4 py-2 text-xs font-sans font-semibold tracking-wide rounded
+                 bg-brand-gold text-brand-bg transition-all"
+          hx-get="/partials/products"
+          hx-target="#product-grid"
+          hx-swap="innerHTML"
+          hx-indicator="#product-loading"
+          role="tab"
+          aria-selected="true"
+        >All</button>
+        <button
+          class="px-4 py-2 text-xs font-sans font-semibold tracking-wide rounded
+                 bg-brand-surface-2 text-brand-muted border border-brand-border
+                 hover:text-white hover:border-brand-gold/40 transition-all"
+          hx-get="/partials/products?category=kits"
+          hx-target="#product-grid"
+          hx-swap="innerHTML"
+          hx-indicator="#product-loading"
+          role="tab"
+          aria-selected="false"
+        >Kits</button>
+        <button
+          class="px-4 py-2 text-xs font-sans font-semibold tracking-wide rounded
+                 bg-brand-surface-2 text-brand-muted border border-brand-border
+                 hover:text-white hover:border-brand-gold/40 transition-all"
+          hx-get="/partials/products?category=tiles"
+          hx-target="#product-grid"
+          hx-swap="innerHTML"
+          hx-indicator="#product-loading"
+          role="tab"
+          aria-selected="false"
+        >Tiles</button>
+        <button
+          class="px-4 py-2 text-xs font-sans font-semibold tracking-wide rounded
+                 bg-brand-surface-2 text-brand-muted border border-brand-border
+                 hover:text-white hover:border-brand-gold/40 transition-all"
+          hx-get="/partials/products?category=accessories"
+          hx-target="#product-grid"
+          hx-swap="innerHTML"
+          hx-indicator="#product-loading"
+          role="tab"
+          aria-selected="false"
+        >Accessories</button>
+      </div>
+    </div>
+
+    <!-- Loading indicator for HTMX requests -->
+    <div id="product-loading"
+         class="htmx-indicator flex justify-center py-8"
+         aria-live="polite" aria-label="Loading products">
+      <div class="w-6 h-6 border-2 border-brand-gold/30 border-t-brand-gold rounded-full animate-spin"></div>
+    </div>
+
+    <!-- Product grid — swapped by HTMX -->
+    <div id="product-grid">
+      {% include "partials/product-grid.njk" %}
+    </div>
+
+  </div>
+</section>
+
+{# ═══════════════════════════════════════════════════════════
+   CTA BANNER — Create Battle Maps on the Fly
+════════════════════════════════════════════════════════════ #}
+<section class="relative bg-brand-bg overflow-hidden py-20 sm:py-24" aria-label="Call to action">
+
+  <!-- Background pattern -->
+  <div class="absolute inset-0 bg-tile-pattern bg-tile opacity-60" aria-hidden="true"></div>
+
+  <!-- Gold glow left + right -->
+  <div class="absolute left-0 top-1/2 -translate-y-1/2 w-96 h-96
+              bg-brand-gold/10 rounded-full blur-3xl" aria-hidden="true"></div>
+  <div class="absolute right-0 top-1/2 -translate-y-1/2 w-96 h-96
+              bg-brand-gold/5 rounded-full blur-3xl" aria-hidden="true"></div>
+
+  <div class="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
+    <span class="section-label">DM-Ready Terrain</span>
+    <h2 class="font-display font-bold text-4xl sm:text-5xl lg:text-6xl text-white mb-6 leading-tight">
+      Create Battle Maps<br />
+      <span class="text-gradient">on the Fly</span>
+    </h2>
+    <p class="text-brand-muted text-lg sm:text-xl leading-relaxed mb-10 max-w-xl mx-auto">
+      Keep your players highly engaged with Epoch Tile's detailed custom pieces while building
+      a tabletop fantasy world from your imagination.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="/#categories" class="btn-primary">
+        Start Building
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Price range note -->
+    <p class="mt-6 text-xs text-brand-muted">
+      Kits from $95 &middot; Tile packs from $30 &middot; Free shipping on orders over $75
+    </p>
+  </div>
+</section>
+
+{# ═══════════════════════════════════════════════════════════
+   STORY BLOCK 2 — Craft Immersive Scenes Fast
+════════════════════════════════════════════════════════════ #}
+<section class="bg-brand-surface border-t border-brand-border py-20 sm:py-28 overflow-hidden" aria-label="Craft immersive scenes">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+      <!-- Text (left) -->
+      <div>
+        <span class="section-label">Limitless Combinations</span>
+        <h2 class="section-heading mb-6">
+          Craft Immersive Scenes<br />
+          <span class="text-gradient">Fast</span>
+        </h2>
+        <div class="space-y-4 text-brand-muted text-base leading-relaxed">
+          <p>
+            Unchain your terrain with limitless combinations of tiles, walls, and detailed scenery.
+            Epoch Tiles make it easy to give your dungeons dimension.
+          </p>
+          <p>
+            Take your players through ancient forest roads, deserts of sand, mountains of dirt and
+            rock, oceans of water, castles of stone — the options are endless.
+          </p>
+          <p>
+            Our wide selection of custom pieces will bring your game to life. Give your player and
+            creature miniatures the terrain they deserve.
+          </p>
+        </div>
+
+        <!-- Feature list -->
+        <ul class="mt-8 space-y-3" role="list">
+          {% set perks = [
+            'Works with standard 25mm scale miniatures',
+            'No setup tools needed — magnetic snap connection',
+            'Mix any tile packs and kit pieces freely',
+            'Lightweight enough to travel to game nights'
+          ] %}
+          {% for perk in perks %}
+            <li class="flex items-start gap-3 text-sm text-brand-muted">
+              <svg class="w-4 h-4 text-brand-gold mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+              </svg>
+              {{ perk }}
+            </li>
+          {% endfor %}
+        </ul>
+
+        <div class="mt-8">
+          <a href="/#categories" class="btn-primary text-sm">Explore the Collection</a>
+        </div>
+      </div>
+
+      <!-- Visual: biome variety showcase -->
+      <div class="relative" aria-hidden="true">
+        <div class="absolute inset-0 bg-brand-gold/5 rounded-3xl blur-3xl scale-110"></div>
+        <div class="relative grid grid-cols-2 gap-3">
+          {% set biomes = [
+            {name:'Ancient Woodlands',  color:'from-green-900 to-emerald-950',  label:'Kit'},
+            {name:'Crystal Caverns',    color:'from-indigo-900 to-purple-950',   label:'Kit'},
+            {name:'Castle & Stone',     color:'from-stone-800 to-zinc-900',      label:'Tiles'},
+            {name:'Endless Sands',      color:'from-amber-900 to-yellow-950',    label:'Kit'},
+            {name:'Sand & Water',       color:'from-cyan-900 to-blue-950',       label:'Tiles'},
+            {name:'Hidden Temple',      color:'from-orange-900 to-red-950',      label:'Kit'}
+          ] %}
+          {% for b in biomes %}
+            <div class="relative rounded-xl overflow-hidden border border-brand-border
+                        bg-gradient-to-br {{ b.color }} h-28 sm:h-32
+                        flex flex-col justify-between p-3
+                        hover:border-brand-gold/30 transition-colors">
+              <span class="text-xs font-sans font-semibold text-white/50 uppercase tracking-widest">{{ b.label }}</span>
+              <span class="text-xs font-sans font-medium text-white/80 leading-tight">{{ b.name }}</span>
+              <!-- Tile pattern overlay -->
+              <div class="absolute inset-0 bg-tile-pattern bg-tile opacity-20"></div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{# ═══════════════════════════════════════════════════════════
+   FAQ stub — Alpine.js accordion (HTMX-ready for lazy load)
+════════════════════════════════════════════════════════════ #}
+<section class="bg-brand-bg border-t border-brand-border py-20 sm:py-24" aria-label="Frequently asked questions">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <span class="section-label">FAQ</span>
+      <h2 class="section-heading text-3xl">Common Questions</h2>
+    </div>
+
+    <div class="space-y-2"
+         x-data="{ open: null }"
+         role="list">
+      {% set faqs = [
+        {
+          q: 'What scale are Epochscapes tiles?',
+          a: 'Epochscapes tiles are designed for the standard 25mm (1-inch grid) scale used by D&D, Pathfinder, and most tabletop RPGs. Each tile square equals one inch.'
+        },
+        {
+          q: 'How does the magnetic connection work?',
+          a: 'Each tile has embedded magnets on its edges. Just place tiles adjacent to each other and they snap together. No tools, clips, or trays required — the magnetic field is strong enough to hold terrain in place but light enough to rearrange in seconds.'
+        },
+        {
+          q: 'Are tiles double-sided?',
+          a: 'Yes. Every Epochscapes tile is double-sided with two distinct biomes — for example Stone & Water, or Castle & Grass. This doubles the terrain combinations you can build from any single pack.'
+        },
+        {
+          q: 'What comes in a Kit vs. a Tile Pack?',
+          a: 'Kits are themed complete sets that include tiles, walls, detailed accessory pieces (pillars, crystals, trees, etc.) all matching a single theme. Tile Packs are just the core tiles in a biome pair — ideal for expanding your collection.'
+        },
+        {
+          q: 'When will my order ship?',
+          a: 'Orders typically ship within 2–3 business days from Lehi, UT. You\'ll receive a tracking email once dispatched.'
+        }
+      ] %}
+
+      {% for faq in faqs %}
+        <div class="rounded-lg border border-brand-border bg-brand-surface overflow-hidden"
+             x-data="{ isOpen: false }"
+             role="listitem">
+          <button
+            @click="isOpen = !isOpen"
+            class="w-full flex items-center justify-between px-5 py-4 text-left
+                   text-sm font-sans font-medium text-white hover:text-brand-gold-light
+                   transition-colors"
+            :aria-expanded="isOpen"
+          >
+            <span>{{ faq.q }}</span>
+            <svg class="w-4 h-4 text-brand-muted shrink-0 transition-transform duration-200"
+                 :class="isOpen ? 'rotate-180' : ''"
+                 fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+            </svg>
+          </button>
+          <div x-show="isOpen"
+               x-transition:enter="transition ease-out duration-200"
+               x-transition:enter-start="opacity-0 -translate-y-1"
+               x-transition:enter-end="opacity-100 translate-y-0"
+               x-transition:leave="transition ease-in duration-150"
+               x-transition:leave-start="opacity-100"
+               x-transition:leave-end="opacity-0"
+               class="px-5 pb-4">
+            <p class="text-sm text-brand-muted leading-relaxed">{{ faq.a }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

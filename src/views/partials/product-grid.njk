@@ -1,0 +1,50 @@
+{% if products.length %}
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+    {% for p in products %}
+      <article class="product-card group" aria-label="{{ p.name }}">
+
+        <!-- Thumbnail area -->
+        <div class="relative h-48 {{ p.thumb }} flex items-end p-4 overflow-hidden">
+          <!-- Category badge -->
+          {% if p.badge %}
+            <span class="absolute top-3 right-3 px-2 py-0.5 rounded-sm
+                         bg-brand-gold text-brand-bg text-xs font-sans font-semibold tracking-wide">
+              {{ p.badge }}
+            </span>
+          {% endif %}
+
+          <!-- Category pill -->
+          <span class="px-2.5 py-1 rounded-sm bg-black/50 text-brand-muted text-xs font-sans capitalize">
+            {{ p.category }}
+          </span>
+        </div>
+
+        <!-- Card body -->
+        <div class="p-4">
+          <h3 class="text-sm font-sans font-semibold text-white leading-snug mb-1 group-hover:text-brand-gold-light transition-colors">
+            {{ p.name }}
+          </h3>
+
+          {% if p.description %}
+            <p class="text-xs text-brand-muted leading-relaxed mb-3 line-clamp-2">{{ p.description }}</p>
+          {% endif %}
+
+          <div class="flex items-center justify-between mt-3">
+            <span class="price-range">{{ p.priceLabel }}</span>
+
+            {# TODO: Replace href with Hostinger checkout URL when API is wired #}
+            <a href="{{ p.slug or '#' }}"
+               class="text-xs font-sans font-medium text-brand-gold hover:text-brand-gold-light
+                      border border-brand-gold/40 hover:border-brand-gold/80
+                      px-3 py-1.5 rounded transition-all duration-200"
+               aria-label="View {{ p.name }}">
+              View →
+            </a>
+          </div>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+{% else %}
+  <p class="text-brand-muted text-center py-10">No products found.</p>
+{% endif %}

@@ -1,0 +1,72 @@
+<footer class="bg-brand-surface border-t border-brand-border" role="contentinfo">
+
+  <!-- Main footer grid -->
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12">
+
+      <!-- Brand column -->
+      <div class="lg:col-span-2">
+        <a href="/" class="flex items-center gap-2.5 group mb-4" aria-label="Epochscapes">
+          <svg class="w-7 h-7 text-brand-gold shrink-0" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <rect x="1" y="1" width="13" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            <rect x="18" y="1" width="13" height="13" rx="2" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-width="1.5"/>
+            <rect x="1" y="18" width="13" height="13" rx="2" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-width="1.5"/>
+            <rect x="18" y="18" width="13" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="16" cy="16" r="1.5" fill="currentColor"/>
+          </svg>
+          <span class="font-display font-semibold text-white tracking-widest uppercase text-sm">Epochscapes</span>
+        </a>
+        <p class="text-brand-muted text-sm leading-relaxed max-w-xs">
+          Magnetic dungeon tiles and modular TTRPG terrain made for dungeon masters who refuse to compromise on atmosphere.
+        </p>
+        <address class="not-italic mt-5 text-xs text-brand-muted leading-relaxed">
+          Epoch Possibilities LLC<br />
+          2901 W Bluegrass Blvd Ste 200-108<br />
+          Lehi, UT 84043
+        </address>
+      </div>
+
+      <!-- Shop column -->
+      <div>
+        <h3 class="text-xs font-sans font-semibold tracking-widest uppercase text-white mb-4">Shop</h3>
+        <ul class="space-y-2.5" role="list">
+          <li><a href="/#categories" class="text-sm text-brand-muted hover:text-white transition-colors">Kits</a></li>
+          <li><a href="/#categories" class="text-sm text-brand-muted hover:text-white transition-colors">Tile Packs</a></li>
+          <li><a href="/#categories" class="text-sm text-brand-muted hover:text-white transition-colors">Accessories</a></li>
+          <li>
+            {# TODO: hook to Hostinger cart #}
+            <a href="/cart" class="text-sm text-brand-muted hover:text-white transition-colors">Cart</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Company / Support column -->
+      <div>
+        <h3 class="text-xs font-sans font-semibold tracking-widest uppercase text-white mb-4">Company</h3>
+        <ul class="space-y-2.5" role="list">
+          <li><a href="/about"                    class="text-sm text-brand-muted hover:text-white transition-colors">About</a></li>
+          <li><a href="mailto:support@epochscapes.com" class="text-sm text-brand-muted hover:text-white transition-colors">Contact Us</a></li>
+          <li><a href="#"                          class="text-sm text-brand-muted hover:text-white transition-colors">Shipping & Returns</a></li>
+          <li><a href="#"                          class="text-sm text-brand-muted hover:text-white transition-colors">Privacy Policy</a></li>
+          <li><a href="#"                          class="text-sm text-brand-muted hover:text-white transition-colors">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="border-t border-brand-border">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-xs text-brand-muted">
+        &copy; <span id="footer-year">2026</span> Epoch Possibilities LLC. All rights reserved.
+      </p>
+      <p class="text-xs text-brand-muted">
+        Handcrafted terrain for extraordinary stories.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+</script>

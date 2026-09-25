@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base ────────────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-brand-bg text-white font-sans antialiased;
+  }
+
+  h1, h2, h3 {
+    @apply font-display;
+  }
+
+  *:focus-visible {
+    @apply outline-none ring-2 ring-brand-gold ring-offset-2 ring-offset-brand-bg;
+  }
+}
+
+/* ─── Components ─────────────────────────────────────────── */
+@layer components {
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2
+           px-7 py-3.5 rounded
+           bg-brand-gold text-brand-bg font-sans font-semibold text-sm tracking-wide
+           transition-all duration-200
+           hover:bg-brand-gold-light hover:shadow-[0_0_24px_rgba(201,162,39,0.45)]
+           focus-visible:ring-brand-gold
+           active:scale-[0.98];
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2
+           px-7 py-3.5 rounded
+           border border-brand-gold text-brand-gold font-sans font-semibold text-sm tracking-wide
+           transition-all duration-200
+           hover:bg-brand-gold hover:text-brand-bg hover:shadow-[0_0_24px_rgba(201,162,39,0.35)]
+           focus-visible:ring-brand-gold
+           active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2
+           px-5 py-2.5
+           text-brand-muted font-sans text-sm
+           transition-colors duration-200
+           hover:text-white;
+  }
+
+  /* Product card */
+  .product-card {
+    @apply bg-brand-surface rounded-lg border border-brand-border overflow-hidden
+           transition-all duration-300
+           hover:border-brand-gold/40 hover:shadow-[0_4px_32px_rgba(201,162,39,0.12)]
+           hover:-translate-y-0.5;
+  }
+
+  /* Section labels */
+  .section-label {
+    @apply inline-block text-brand-gold font-sans text-xs font-semibold tracking-widest uppercase mb-3;
+  }
+
+  /* Section heading */
+  .section-heading {
+    @apply text-3xl md:text-4xl lg:text-5xl font-display font-semibold text-white leading-tight;
+  }
+
+  /* Feature icon container */
+  .feature-icon {
+    @apply w-12 h-12 rounded-lg bg-brand-gold/10 border border-brand-gold/25
+           flex items-center justify-center mb-4 text-brand-gold;
+  }
+
+  /* Nav link */
+  .nav-link {
+    @apply text-sm font-sans text-brand-muted
+           transition-colors duration-200
+           hover:text-white
+           relative after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-brand-gold
+           after:transition-[width] after:duration-200 hover:after:w-full;
+  }
+
+  /* Price display */
+  .price-range {
+    @apply text-brand-gold font-semibold text-sm;
+  }
+
+  /* Card gradient thumbnails */
+  .thumb-kits {
+    @apply bg-gradient-to-br from-amber-900/60 via-yellow-900/40 to-brand-surface;
+  }
+  .thumb-tiles {
+    @apply bg-gradient-to-br from-indigo-900/60 via-purple-900/40 to-brand-surface;
+  }
+  .thumb-accessories {
+    @apply bg-gradient-to-br from-emerald-900/60 via-teal-900/40 to-brand-surface;
+  }
+}
+
+/* ─── Utilities ──────────────────────────────────────────── */
+@layer utilities {
+
+  /* Gradient text */
+  .text-gradient {
+    @apply bg-clip-text text-transparent
+           bg-gradient-to-r from-brand-gold-light to-brand-gold;
+  }
+
+  /* Divider with fade */
+  .divider {
+    @apply border-t border-brand-border;
+  }
+
+  /* Scrollbar styling */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.brand.border') transparent;
+  }
+}

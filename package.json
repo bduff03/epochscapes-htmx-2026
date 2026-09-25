@@ -1,0 +1,25 @@
+{
+  "name": "epochscapes-htmx",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Epochscapes marketing homepage — Express + Nunjucks + Tailwind CSS + HTMX",
+  "scripts": {
+    "dev": "concurrently \"nodemon src/server.js\" \"npx tailwindcss -i src/css/main.css -o src/public/css/style.css --watch\"",
+    "build:css": "npx tailwindcss -i src/css/main.css -o src/public/css/style.css --minify",
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "nunjucks": "^3.2.4"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.0",
+    "tailwindcss": "^3.4.1",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
