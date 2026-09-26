@@ -1,677 +1,350 @@
 {% extends "base.njk" %}
+{% from "partials/ink-divider.njk" import inkDivider %}
+{% from "partials/brush-mask.njk" import brushMask %}
 
 {% block content %}
 
 {# ═══════════════════════════════════════════════════════
-   HERO — full-viewport, real background photo
+   HERO + CTA BAR — Figma 22:63 / 94:7
 ═══════════════════════════════════════════════════════ #}
-<section
-  id="hero"
-  class="relative min-h-screen flex flex-col overflow-hidden"
-  aria-label="Hero"
->
-  <!-- Real hero background image -->
-  <div
-    class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-    style="background-image: url('/images/hero-bg.png');"
-    aria-hidden="true"
-  ></div>
-
-  <!-- Dark overlay for readability -->
-  <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" aria-hidden="true"></div>
-
-  <!-- Edge vignette -->
-  <div class="absolute inset-0 [background:radial-gradient(ellipse_at_center,transparent_50%,rgba(0,0,0,0.5)_100%)]" aria-hidden="true"></div>
-
-  <!-- Hero copy (left-aligned, vertically centered) -->
-  <div class="relative z-10 flex-1 flex items-center">
-    <div class="mx-auto w-full max-w-container px-5 sm:px-8 py-24 pt-36">
-      <div class="max-w-xl">
-
-        <p class="section-eyebrow-light mb-4">Epoch Possibilities LLC</p>
-
-        <h1 class="font-sans font-black text-white uppercase
-                   leading-[1.02] tracking-[-0.015em]
-                   text-[2.75rem] sm:text-[3.75rem] lg:text-[4.5rem] mb-6">
-          Build Your Next<br />Great Adventure
-        </h1>
-
-        <p class="text-white/70 text-base sm:text-lg leading-relaxed max-w-md mb-10">
-          Intuitive &amp; versatile TTRPG terrain — magnetic tiles that let you
-          build any scene before your players' eyes.
-        </p>
-
-        <a href="/products" class="btn-cta">
-          Get Started Today
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
-          </svg>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  {# ── Category navigation buttons ─────────────────────── #}
-  <div class="relative z-10 mx-auto w-full max-w-container px-5 sm:px-8 pb-0">
-    <div class="flex justify-start sm:justify-center overflow-x-auto scrollbar-thin pb-0">
-      <div class="flex bg-white shadow-[0_8px_32px_rgba(0,0,0,0.5)] overflow-hidden shrink-0"
-           role="navigation" aria-label="Product categories">
-
-        <a href="/kits" class="cat-btn" aria-label="Shop Kits">
-          <svg class="cat-btn-icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 32 32" aria-hidden="true">
-            <rect x="2"  y="3"  width="4" height="4" rx="0.5" fill="currentColor"/>
-            <rect x="8"  y="3"  width="4" height="4" rx="0.5" fill="currentColor"/>
-            <rect x="20" y="3"  width="4" height="4" rx="0.5" fill="currentColor"/>
-            <rect x="26" y="3"  width="4" height="4" rx="0.5" fill="currentColor"/>
-            <rect x="2"  y="7"  width="6" height="14" fill="currentColor"/>
-            <rect x="24" y="7"  width="6" height="14" fill="currentColor"/>
-            <rect x="8"  y="10" width="16" height="11" fill="currentColor"/>
-            <rect x="13" y="16" width="6" height="5" fill="white"/>
-            <rect x="2"  y="21" width="28" height="4" fill="currentColor"/>
-          </svg>
-          <span class="cat-btn-label">Kits</span>
-        </a>
-
-        <a href="/tiles" class="cat-btn" aria-label="Shop Tiles">
-          <svg class="cat-btn-icon" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
-            <rect x="2"  y="2"  width="13" height="13" rx="1.5"/>
-            <rect x="17" y="2"  width="13" height="13" rx="1.5"/>
-            <rect x="2"  y="17" width="13" height="13" rx="1.5"/>
-            <rect x="17" y="17" width="13" height="13" rx="1.5"/>
-          </svg>
-          <span class="cat-btn-label">Tiles</span>
-        </a>
-
-        <a href="/terrain" class="cat-btn" aria-label="Shop Terrain">
-          <svg class="cat-btn-icon" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
-            <polygon points="16,2 30,26 2,26"/>
-            <rect x="13" y="26" width="6" height="4"/>
-          </svg>
-          <span class="cat-btn-label">Terrain</span>
-        </a>
-
-        <a href="/products" class="cat-btn active" aria-label="Shop all products" aria-selected="true">
-          <svg class="cat-btn-icon" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 32 32" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M4 7h24l-2.5 12H6.5L4 7z M4 7L2 2H0"/>
-            <circle cx="11" cy="25" r="2" fill="currentColor"/>
-            <circle cx="23" cy="25" r="2" fill="currentColor"/>
-          </svg>
-          <span class="cat-btn-label">Shop</span>
-        </a>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- Ink fade transition into next section -->
-  <div class="relative z-10 pointer-events-none w-full" aria-hidden="true">
+<section id="hero" class="relative h-[560px] sm:h-[625px]" aria-label="Hero">
+  <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
     <img
-      src="/images/fade-transition-black.png"
+      src="/images/home-v2/hero-bg.jpg"
       alt=""
-      class="w-full block"
-      style="height: 80px; object-fit: cover; object-position: bottom; margin-bottom: -1px;"
-      loading="eager"
+      class="absolute inset-0 h-full w-full max-w-none object-cover object-[50%_0%]"
+      width="1600" height="900"
+      fetchpriority="high"
     />
+    <img src="/images/home-v2/hero-overlay.svg" alt="" class="absolute inset-0 h-full w-full max-w-none" />
+  </div>
+
+  <div class="container-home relative z-10 pt-[170px] sm:pt-[269px]">
+    <h1 class="heading-display max-w-[558px] text-white animate-fade-up">
+      Build Your Next Great Adventure
+    </h1>
+    <p class="mt-6 sm:mt-7 font-roboto font-bold uppercase text-gallery text-[16px] leading-[20px] sm:text-[20px] animate-fade-up [animation-delay:120ms]">
+      Intuitive &amp; versatile TTRPG terrain
+    </p>
+  </div>
+
+  <div class="absolute inset-x-0 bottom-[-46px] sm:bottom-[-70px] z-20 flex justify-center px-5">
+    <nav class="flex gap-1 bg-alabaster p-1 shadow-[0_4px_8px_rgba(0,0,0,0.15)] animate-fade-up [animation-delay:240ms]"
+         aria-label="Shop by category">
+      <a href="/kits" class="cta-tile">
+        <img src="/images/home-v2/cta-kits.svg" alt="" aria-hidden="true" class="cta-tile-icon" />
+        <span class="cta-tile-label">Kits</span>
+      </a>
+      <a href="/tiles" class="cta-tile">
+        <img src="/images/home-v2/cta-tiles.svg" alt="" aria-hidden="true" class="cta-tile-icon" />
+        <span class="cta-tile-label">Tiles</span>
+      </a>
+      <a href="/terrain" class="cta-tile">
+        <img src="/images/home-v2/cta-terrain.svg" alt="" aria-hidden="true" class="cta-tile-icon" />
+        <span class="cta-tile-label">Terrain</span>
+      </a>
+      <a href="/products" class="cta-tile cta-tile--active" aria-current="page">
+        <img src="/images/home-v2/cta-shop.svg" alt="" aria-hidden="true"
+             class="cta-tile-icon !h-[45px] -mt-[4px] -mb-[9px] sm:!h-[69px] sm:-mt-[6px] sm:-mb-[14px]" />
+        <span class="cta-tile-label">Shop</span>
+      </a>
+    </nav>
   </div>
 </section>
 
 
 {# ═══════════════════════════════════════════════════════
-   FEATURES — white background
-   "Landscapes as Diverse as Your Imagination"
+   FEATURES — Figma 94:8
 ═══════════════════════════════════════════════════════ #}
-<section id="features" class="bg-white pt-20 pb-16 sm:pt-28 sm:pb-24" aria-label="Key features">
-  <div class="mx-auto max-w-container px-5 sm:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+<section id="features" class="relative bg-white pt-[100px] sm:pt-[150px] xl:pt-[177px] pb-16 xl:pb-2" aria-label="Key features">
+  <div class="container-home xl:flex xl:items-start xl:justify-between">
 
-      <!-- LEFT: Headline + body + CTA + scenic image -->
-      <div>
-        <h2 class="heading-dark mb-7 leading-tight">
-          Landscapes as Diverse<br />as Your Imagination
-        </h2>
-
-        <p class="body-dark mb-8 max-w-[520px]">
-          Epochscapes is an intuitive and versatile TTRPG terrain that allows any dungeon master
-          to quickly create their battle map and scene before their players' eyes.
-          Bring your setting into reality.
-        </p>
-
-        <a href="/kits" class="btn-cta mb-12 sm:mb-16 inline-flex">Get Started Today!</a>
-
-        <!-- Scenic terrain illustration — POV from miniature level -->
-        <div class="relative overflow-hidden" style="height: 300px;">
-          <img
-            src="/images/terrain-pov.png"
-            alt="Epochscapes terrain — a player's eye view through castle walls and scenery"
-            class="w-full h-full object-cover object-center"
-            loading="lazy"
-          />
-          <!-- Soft bottom fade to blend into white -->
-          <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
-          <div class="absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-white to-transparent pointer-events-none"></div>
-        </div>
-      </div>
-
-      <!-- RIGHT: 3 feature blocks -->
-      <div class="flex flex-col divide-y divide-zinc-100 lg:pt-2">
-
-        <!-- Double-Sided Tiles -->
-        <div class="feature-block py-9 first:pt-0 last:pb-0">
-          <svg class="feature-icon-green shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 48 48" aria-hidden="true">
-            <rect x="4"  y="4"  width="18" height="18" rx="2" stroke-width="2"/>
-            <rect x="12" y="12" width="18" height="18" rx="2" fill="currentColor" fill-opacity="0.12" stroke-width="2"/>
-            <rect x="26" y="4"  width="18" height="18" rx="2" stroke-width="2"/>
-            <rect x="4"  y="26" width="18" height="18" rx="2" stroke-width="2"/>
-            <rect x="26" y="26" width="18" height="18" rx="2" fill="currentColor" fill-opacity="0.25" stroke-width="2"/>
-          </svg>
-          <div>
-            <h3 class="feature-title mb-2">Double-Sided Tiles</h3>
-            <p class="feature-body">
-              Create fantasy worlds with your choice of sand, water, cave, castle, grass, and more.
-              Double-sided tiles get you more creative bang for your buck.
-            </p>
-          </div>
-        </div>
-
-        <!-- Magnetic Connection -->
-        <div class="feature-block py-9">
-          <svg class="feature-icon-green shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 48 48" aria-hidden="true">
-            <path d="M10 8 h6 v20 a8 8 0 0 0 16 0 V8 h6" stroke-linecap="round" stroke-linejoin="round"/>
-            <rect x="10" y="32" width="7" height="6" rx="0" fill="currentColor" stroke="none"/>
-            <rect x="31" y="32" width="7" height="6" rx="0" fill="currentColor" stroke="none"/>
-          </svg>
-          <div>
-            <h3 class="feature-title mb-2">Magnetic Connection</h3>
-            <p class="feature-body">
-              Our magnetic dungeon tiles' lightweight and easily interchangeable design makes setup
-              a breeze. No tin trays. No finger-aching clips. Just terrain that seemingly builds itself.
-            </p>
-          </div>
-        </div>
-
-        <!-- Modular Terrain -->
-        <div class="feature-block py-9 last:pb-0">
-          <svg class="feature-icon-green shrink-0" fill="currentColor" viewBox="0 0 48 48" aria-hidden="true">
-            <polygon points="24,4 44,40 4,40" fill-opacity="0.9"/>
-            <polygon points="14,40 27,16 40,40" fill="white" fill-opacity="0.3"/>
-          </svg>
-          <div>
-            <h3 class="feature-title mb-2">Modular Terrain</h3>
-            <p class="feature-body">
-              Embark on epic adventures anytime, anywhere. Our terrain is the dynamic solution
-              for any tabletop or war game that works with the standard 25mm scale.
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-
-{# ═══════════════════════════════════════════════════════
-   Ink / smoke transition — white → black
-═══════════════════════════════════════════════════════ #}
-<div class="bg-white -mb-px pointer-events-none overflow-hidden" aria-hidden="true" style="line-height:0;">
-  <svg viewBox="0 0 1440 56" preserveAspectRatio="none" class="w-full" style="display:block; height:56px;">
-    <path d="M0,56 C180,20 300,56 480,30 C600,14 720,50 900,22 C1080,0 1260,40 1440,14 L1440,56 Z" fill="#000000"/>
-  </svg>
-</div>
-
-
-{# ═══════════════════════════════════════════════════════
-   KITS — dark background, product card row
-   "Explore Our Kits"
-═══════════════════════════════════════════════════════ #}
-<section id="kits" class="bg-[#000000] py-20 sm:py-28" aria-label="Explore kits">
-  <div class="mx-auto max-w-container px-5 sm:px-8">
-
-    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
-      <div>
-        <span class="section-eyebrow-light">Themed Packages</span>
-        <h2 class="heading-light">Explore Our Kits</h2>
-      </div>
-      <a href="/kits" class="btn-cta shrink-0">Shop All Kits</a>
-    </div>
-
-    <!-- Kit cards -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      {% set kitImages = [
-        '/images/terrain-651830478.jpeg',
-        '/images/lifestyle-532216565.jpeg',
-        '/images/terrain-651830444.jpeg',
-        '/images/lifestyle-751658706.jpeg'
-      ] %}
-      {% set kitImagePos = ['center', 'center', 'center top', 'center'] %}
-      {% for p in products %}
-        {% if p.category === 'kits' %}
-          <a href="{{ p.slug }}"
-             class="product-card-dark group block no-underline
-                    focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2
-                    focus-visible:outline-none focus-visible:ring-offset-[#000000]"
-             aria-label="{{ p.name }}{% if p.priceLabel %} — {{ p.priceLabel }}{% endif %}">
-
-            <div class="relative overflow-hidden" style="height:208px;">
-              <img
-                src="{{ kitImages[loop.index0 % 4] }}"
-                alt="{{ p.name }}"
-                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                style="object-position: {{ kitImagePos[loop.index0 % 4] }};"
-                loading="lazy"
-              />
-              <!-- Dark overlay for text readability -->
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-
-              {% if p.badge %}
-                <span class="absolute top-3 left-3 px-2 py-0.5 bg-brand-red text-white
-                             text-[10px] font-sans font-bold tracking-widest uppercase z-10">
-                  {{ p.badge }}
-                </span>
-              {% endif %}
-            </div>
-
-            <div class="p-4">
-              <h3 class="text-[13px] font-sans font-bold text-white tracking-[0.06em] uppercase mb-1
-                         group-hover:text-brand-green transition-colors leading-snug">
-                {{ p.name }}
-              </h3>
-              {% if p.description %}
-                <p class="text-zinc-500 text-[12px] leading-relaxed mb-3 line-clamp-2">{{ p.description }}</p>
-              {% endif %}
-              <div class="flex items-center justify-between pt-2 border-t border-zinc-800">
-                <span class="text-brand-green font-sans font-bold text-[13px] tracking-wide">
-                  {{ p.priceLabel }}
-                </span>
-                <span class="text-[10px] font-sans font-bold tracking-widest uppercase
-                             text-zinc-500 group-hover:text-white transition-colors"
-                      aria-hidden="true">
-                  View →
-                </span>
-              </div>
-            </div>
-          </a>
-        {% endif %}
-      {% endfor %}
-    </div>
-
-  </div>
-</section>
-
-
-{# ═══════════════════════════════════════════════════════
-   Smoke divider — black → white
-═══════════════════════════════════════════════════════ #}
-<div class="bg-[#000000] -mb-px pointer-events-none overflow-hidden" aria-hidden="true" style="line-height:0;">
-  <svg viewBox="0 0 1440 56" preserveAspectRatio="none" class="w-full" style="display:block; height:56px;">
-    <path d="M0,0 C180,52 360,8 600,36 C780,56 960,8 1140,34 C1280,52 1380,18 1440,0 L1440,56 L0,56 Z" fill="white"/>
-  </svg>
-</div>
-
-
-{# ═══════════════════════════════════════════════════════
-   BUILD & CHANGE — white background
-   "Insanely Intuitive to Build & Change"
-═══════════════════════════════════════════════════════ #}
-<section class="bg-white py-20 sm:py-28" aria-label="How it works">
-  <div class="mx-auto max-w-container px-5 sm:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-
-      <!-- Text side -->
-      <div>
-        <h2 class="heading-dark mb-6 leading-tight">
-          Insanely Intuitive<br />to Build &amp; Change
-        </h2>
-        <p class="body-dark mb-6">
-          You prepared a castle before the game, but the players wanted to go to the forest?
-          Happens all the time. Epochscapes makes it easy to completely shift the scene in minutes.
-        </p>
-        <p class="body-dark mb-8">
-          Take your dungeon terrain to a new level. Let your players fight the monster when it's
-          best for the story. Let them find the hidden gold with dynamic scenery.
-          Make unbounded arenas that befit their miniatures.
-        </p>
-
-        <h3 class="subheading-dark mb-4">Modular &amp; Versatile</h3>
-        <p class="body-dark mb-8">
-          Keep your players highly engaged with Epoch Tile's detailed custom pieces while building
-          a tabletop fantasy world from your imagination.
-        </p>
-
-        <a href="/products" class="btn-cta inline-flex">Shop All Products</a>
-      </div>
-
-      <!-- Lifestyle photo + product tile row -->
-      <div class="space-y-4">
-
-        <!-- Primary lifestyle photo: players at the table -->
-        <div class="relative overflow-hidden" style="height: 320px;">
-          <img
-            src="/images/lifestyle-tabletop.png"
-            alt="Two players enjoying Epochscapes terrain at the gaming table"
-            class="w-full h-full object-cover object-top"
-            loading="lazy"
-          />
-          <!-- Soft edges top + bottom -->
-          <div class="absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-white to-transparent pointer-events-none"></div>
-          <div class="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
-        </div>
-
-        <!-- Three tile pack thumbnails -->
-        <div class="grid grid-cols-3 gap-3">
-          <div class="relative overflow-hidden" style="height:110px;">
-            <img
-              src="/images/terrain-651830478.jpeg"
-              alt="Stone & Water terrain tiles"
-              class="w-full h-full object-cover object-center"
-              loading="lazy"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-black/10 flex items-end p-2">
-              <span class="text-[9px] text-white/90 font-sans font-bold tracking-widest uppercase leading-tight">Stone &amp; Water</span>
-            </div>
-          </div>
-          <div class="relative overflow-hidden" style="height:110px;">
-            <img
-              src="/images/terrain-651830444.jpeg"
-              alt="Castle & Grass terrain tiles"
-              class="w-full h-full object-cover object-center"
-              loading="lazy"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-black/10 flex items-end p-2">
-              <span class="text-[9px] text-white/90 font-sans font-bold tracking-widest uppercase leading-tight">Castle &amp; Grass</span>
-            </div>
-          </div>
-          <div class="relative overflow-hidden" style="height:110px;">
-            <img
-              src="/images/lifestyle-751658706.jpeg"
-              alt="Sand & Water terrain tiles"
-              class="w-full h-full object-cover object-center"
-              loading="lazy"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-black/10 flex items-end p-2">
-              <span class="text-[9px] text-white/90 font-sans font-bold tracking-widest uppercase leading-tight">Sand &amp; Water</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-
-{# ═══════════════════════════════════════════════════════
-   Smoke divider — white → black
-═══════════════════════════════════════════════════════ #}
-<div class="bg-white -mb-px pointer-events-none overflow-hidden" aria-hidden="true" style="line-height:0;">
-  <svg viewBox="0 0 1440 56" preserveAspectRatio="none" class="w-full" style="display:block; height:56px;">
-    <path d="M0,56 C240,16 420,56 660,30 C840,10 1020,50 1260,24 C1340,12 1400,36 1440,56 L1440,0 L0,0 Z" fill="#000000"/>
-  </svg>
-</div>
-
-
-{# ═══════════════════════════════════════════════════════
-   BATTLE MAPS — dark background, terrain POV photo
-   "Create Battle Maps on the Fly"
-═══════════════════════════════════════════════════════ #}
-<section id="battle-maps" class="bg-[#000000] py-20 sm:py-28 overflow-hidden" aria-label="Create battle maps">
-  <div class="mx-auto max-w-container px-5 sm:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-
-      <!-- Text -->
-      <div>
-        <span class="section-eyebrow-light">DM-Ready Terrain</span>
-        <h2 class="heading-light mb-6 leading-tight">
-          Create Battle Maps<br />on the Fly
-        </h2>
-        <p class="body-light mb-6">
-          Keep your players highly engaged with Epoch Tile's detailed custom pieces while building
-          a tabletop fantasy world from your imagination.
-        </p>
-        <p class="body-light mb-6">
-          Unchain your terrain with limitless combinations of tiles, walls, and detailed scenery.
-          Epoch Tiles make it easy to give your dungeons dimension.
-        </p>
-        <p class="body-light mb-8">
-          Take your players through ancient forest roads, deserts of sand, mountains of dirt and
-          rock, oceans of water, castles of stone — the options are endless.
-        </p>
-        <a href="/products" class="btn-cta inline-flex">Shop Now</a>
-      </div>
-
-      <!-- Terrain in action — real POV photo -->
-      <div class="relative">
-        <div class="relative overflow-hidden" style="height: 420px;">
-          <img
-            src="/images/terrain-pov.png"
-            alt="Close-up view through the terrain — the miniature's perspective of Epochscapes tiles and scenery"
-            class="w-full h-full object-cover object-center"
-            loading="lazy"
-          />
-          <!-- Dark edges to blend into black section bg -->
-          <div class="absolute inset-0 [box-shadow:inset_0_0_60px_rgba(0,0,0,0.7)] pointer-events-none"></div>
-          <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black to-transparent pointer-events-none"></div>
-          <div class="absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-black to-transparent pointer-events-none"></div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-{# ═══════════════════════════════════════════════════════
-   Smoke divider — black → white
-═══════════════════════════════════════════════════════ #}
-<div class="bg-[#000000] -mb-px pointer-events-none overflow-hidden" aria-hidden="true" style="line-height:0;">
-  <svg viewBox="0 0 1440 56" preserveAspectRatio="none" class="w-full" style="display:block; height:56px;">
-    <path d="M0,0 C160,52 320,4 560,32 C720,52 900,8 1080,32 C1220,52 1360,14 1440,0 L1440,56 L0,56 Z" fill="white"/>
-  </svg>
-</div>
-
-
-{# ═══════════════════════════════════════════════════════
-   TILES GALLERY — white background, product grid
-   "Landscapes as Diverse…"
-═══════════════════════════════════════════════════════ #}
-<section id="tiles" class="bg-white py-20 sm:py-28" aria-label="Tile packs gallery">
-  <div class="mx-auto max-w-container px-5 sm:px-8">
-
-    <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-12">
-      <div>
-        <span class="section-eyebrow">The Full Collection</span>
-        <h2 class="heading-dark">
-          Landscapes as Diverse as<br class="hidden sm:block"/>Your Imagination
-        </h2>
-      </div>
-
-      <div class="flex gap-2 shrink-0" role="tablist" aria-label="Filter by category">
-        <button
-          class="filter-btn filter-btn-active"
-          hx-get="/partials/products"
-          hx-target="#product-grid"
-          hx-swap="innerHTML"
-          hx-indicator="#product-loading"
-          role="tab" aria-selected="true"
-        >All</button>
-        <button
-          class="filter-btn"
-          hx-get="/partials/products?category=kits"
-          hx-target="#product-grid"
-          hx-swap="innerHTML"
-          hx-indicator="#product-loading"
-          role="tab" aria-selected="false"
-        >Kits</button>
-        <button
-          class="filter-btn"
-          hx-get="/partials/products?category=tiles"
-          hx-target="#product-grid"
-          hx-swap="innerHTML"
-          hx-indicator="#product-loading"
-          role="tab" aria-selected="false"
-        >Tiles</button>
-        <button
-          class="filter-btn"
-          hx-get="/partials/products?category=accessories"
-          hx-target="#product-grid"
-          hx-swap="innerHTML"
-          hx-indicator="#product-loading"
-          role="tab" aria-selected="false"
-        >Accessories</button>
-      </div>
-    </div>
-
-    <div id="product-loading" class="htmx-indicator flex justify-center py-8" aria-live="polite">
-      <div class="w-5 h-5 border-2 border-zinc-200 border-t-brand-green rounded-full animate-spin"></div>
-    </div>
-
-    <div id="product-grid">
-      {% include "partials/product-grid.njk" %}
-    </div>
-
-  </div>
-</section>
-
-
-{# ═══════════════════════════════════════════════════════
-   STAY UPDATED — newsletter + Elfsight social feed
-═══════════════════════════════════════════════════════ #}
-<section class="bg-zinc-50 border-t border-zinc-200 py-16 sm:py-20" aria-label="Newsletter and social feed">
-  <div class="mx-auto max-w-container px-5 sm:px-8">
-
-    <div class="max-w-xl mx-auto text-center mb-14">
-      <h2 class="heading-dark text-2xl sm:text-3xl mb-3">Stay Updated</h2>
-      <p class="body-dark text-sm mb-8">
-        New kits, terrain ideas, and DM tips — straight to your inbox.
+    <div class="relative z-0 xl:w-[559px] xl:shrink-0">
+      <h2 class="heading-section reveal">Landscapes as Diverse as your Imagination</h2>
+      <p class="body-lead mt-6 sm:mt-[29px] max-w-[500px] text-black reveal">
+        Epochscapes is an intuitive and versatile TTRPG terrain that allows any dungeon master to quickly
+        create their battle map and scene before their players' eyes. Bring your setting into reality.
       </p>
 
-      <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto mb-10"
-            onsubmit="event.preventDefault(); alert('Email signup coming soon!')">
-        <label for="newsletter-email" class="sr-only">Email address</label>
-        <input
-          id="newsletter-email"
-          type="email"
-          name="email"
-          placeholder="Your email address"
-          required
-          class="flex-1 px-4 py-3 border border-zinc-300 text-sm font-sans
-                 focus:outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green
-                 bg-white"
-        />
-        <button type="submit" class="btn-cta text-xs py-3 px-6 shrink-0">Subscribe</button>
-      </form>
-
-      <div class="flex items-center justify-center gap-5" aria-label="Social media links">
-        <a href="#" data-todo="replace with real YouTube URL" aria-label="Epochscapes on YouTube"
-           class="text-brand-green hover:text-brand-green-dark transition-colors">
-          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5a3 3 0 00-2.1 2.1C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/>
-          </svg>
-        </a>
-        <a href="#" data-todo="replace with real Instagram URL" aria-label="Epochscapes on Instagram"
-           class="text-brand-green hover:text-brand-green-dark transition-colors">
-          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-          </svg>
-        </a>
-        <a href="#" data-todo="replace with real X/Twitter URL" aria-label="Epochscapes on X"
-           class="text-brand-green hover:text-brand-green-dark transition-colors">
-          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-          </svg>
-        </a>
-        <a href="#" data-todo="replace with real Facebook URL" aria-label="Epochscapes on Facebook"
-           class="text-brand-green hover:text-brand-green-dark transition-colors">
-          <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-          </svg>
-        </a>
-      </div>
+      {% call brushMask(
+        src='/images/home-v2/features-pov.jpg',
+        alt="A miniature's-eye view down an Epochscapes grass path between stone walls and pine trees",
+        frame='/images/home-v2/sight-seeing-45.png',
+        frameClass='-scale-x-100',
+        photoStyle='left:0;top:0.72%;width:98.76%;height:96.53%;',
+        class='reveal mt-[31px] -ml-5 w-[calc(100%+40px)] aspect-[889/691] sm:-ml-8 sm:w-[calc(100%+64px)] xl:-ml-[148px] xl:w-[889px]'
+      ) %}
+        <a href="/kits" class="btn-cta absolute left-5 top-0 z-10 sm:left-8 xl:left-[148px]">Get Started Today!</a>
+      {% endcall %}
     </div>
 
-    {% if elfsightAppId %}
-      <div class="elfsight-social-feed" data-section="stay-updated">
-        <script src="https://static.elfsight.com/platform/platform.js" async></script>
-        <div class="elfsight-app-{{ elfsightAppId }}"
-             data-elfsight-app-lazy
-             aria-label="Social media feed"></div>
+    <div class="relative z-10 mt-4 flex flex-col gap-12 bg-white px-[26px] py-[52px] shadow-[0_4px_15px_rgba(0,0,0,0.25)]
+                xl:mt-[2px] xl:min-h-[785px] xl:w-[459px] xl:shrink-0 xl:justify-between xl:gap-0 reveal"
+         style="--reveal-delay: 120ms">
+      <div class="feature-item">
+        <img src="/images/home-v2/icon-double-sided.svg" alt="" aria-hidden="true" class="h-[61px] w-[61px]" />
+        <h3 class="feature-title">Double-Sided Tiles</h3>
+        <p class="feature-body">
+          Create your battle-map with your choice of sand, water, stone, castle, grass, and more!
+          Double-sided tiles get you more creative bang for your buck.
+        </p>
       </div>
-    {% else %}
-      <div
-        class="border-2 border-dashed border-zinc-200 bg-white
-               min-h-[280px] flex flex-col items-center justify-center
-               gap-4 p-8 text-center"
-        data-placeholder="elfsight-social-feed"
-        aria-label="Social feed placeholder"
-        role="region"
-      >
-        <svg class="w-10 h-10 text-zinc-300" fill="none" stroke="currentColor" stroke-width="1.5"
-             viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round"
-                d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM2.25 14.625c0-.621.504-1.125 1.125-1.125h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM13.5 6.375c0-.621.504-1.125 1.125-1.125h6c.621 0 1.125.504 1.125 1.125v6.75c0 .621-.504 1.125-1.125 1.125h-6A1.125 1.125 0 0113.5 13.125V6.375z"/>
-        </svg>
-        <div>
-          <p class="text-sm font-display font-semibold tracking-widest uppercase text-zinc-400 mb-1">Social Feed</p>
-          <p class="text-xs text-zinc-400 font-sans max-w-xs leading-relaxed">
-            Elfsight widget goes here. Set
-            <code class="bg-zinc-100 px-1.5 py-0.5 font-mono text-zinc-500">ELFSIGHT_APP_ID</code>
-            in <code class="bg-zinc-100 px-1.5 py-0.5 font-mono text-zinc-500">.env</code>
-            and restart the server to activate.
-          </p>
-        </div>
-        <div class="grid grid-cols-3 sm:grid-cols-6 gap-2 w-full max-w-lg mt-2" aria-hidden="true">
-          {% for i in range(0, 6) %}
-            <div class="aspect-square bg-zinc-100 animate-pulse"></div>
-          {% endfor %}
-        </div>
+      <div class="feature-item">
+        <img src="/images/home-v2/icon-magnetic.svg" alt="" aria-hidden="true" class="h-[55.43px] w-[60px]" />
+        <h3 class="feature-title">Magnetic Connection</h3>
+        <p class="feature-body">
+          Our magnetic dungeon tiles' lightweight and easily interchangeable design makes setup (and takedown)
+          a breeze. No tin trays. No finger-aching clips. Just terrain that seemingly builds itself.
+        </p>
       </div>
-    {% endif %}
+      <div class="feature-item">
+        <img src="/images/home-v2/icon-modular.svg" alt="" aria-hidden="true" class="h-[60px] w-[74.88px]" />
+        <h3 class="feature-title">Modular Terrain</h3>
+        <p class="feature-body">
+          Embark on epic adventures anytime, anywhere. Our terrain is the dynamic solution for any tabletop
+          or war game that works with the standard 25mm scale.
+        </p>
+      </div>
+    </div>
 
   </div>
 </section>
 
 
 {# ═══════════════════════════════════════════════════════
-   JOIN THE ADVENTURE — dark with fantasy castle bg
+   EXPLORE OUR KITS — Figma 94:10
 ═══════════════════════════════════════════════════════ #}
-<section class="relative overflow-hidden py-24 sm:py-36" aria-label="Join the adventure">
+<section id="kits" class="relative bg-white" aria-label="Explore our kits">
+  {{ inkDivider('mirror') }}
 
-  <!-- Fantasy castle / landscape background image -->
-  <div class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-       style="background-image: url('/images/castle-fantasy.jpeg');"
-       aria-hidden="true"></div>
+  <div class="relative z-10 -mt-px bg-black">
+    <div class="container-home pt-3">
+      <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+        <h2 class="heading-section text-gallery sm:text-[40px] reveal">Explore Our Kits</h2>
+        <a href="/kits" class="btn-cta self-start sm:self-auto reveal">Shop All Kits</a>
+      </div>
 
-  <!-- Rich dark overlay with purple-to-black gradient (matches fantasy mood) -->
-  <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/80" aria-hidden="true"></div>
-  <div class="absolute inset-0 [background:radial-gradient(ellipse_at_50%_0%,rgba(80,40,140,0.4)_0%,transparent_70%)]" aria-hidden="true"></div>
+      <div class="mt-10 grid grid-cols-2 gap-3 sm:mt-[60px] sm:gap-[15px] lg:mx-auto lg:max-w-[1051px] lg:grid-cols-4">
+        {% for p in kits %}
+          <a href="{{ p.slug }}" class="kit-card reveal" style="--reveal-delay: {{ loop.index0 * 90 }}ms"
+             aria-label="{{ p.name }} — {{ p.priceLabel }}">
+            <img src="{{ p.card.bg }}" alt="" class="kit-card-bg" loading="lazy" decoding="async" />
+            <img src="{{ p.card.art }}" alt="" class="kit-card-art" style="{{ p.card.artStyle }}" loading="lazy" decoding="async" />
+            <span class="kit-card-name">{{ p.card.nameLines[0] }}<br />{{ p.card.nameLines[1] }}</span>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
 
-  <!-- Content -->
-  <div class="relative z-10 mx-auto max-w-lg px-5 sm:px-8 text-center">
-    <h2 class="font-sans font-black text-white text-[2.5rem] sm:text-[3rem] lg:text-[3.5rem] uppercase
-               leading-tight tracking-[-0.01em] mb-5">
-      Join the<br />Adventure
-    </h2>
-    <p class="text-white/65 text-base sm:text-lg mb-10 leading-relaxed">
-      Get exclusive discounts, new product announcements, and inspiration for your next session.
+  {{ inkDivider('flip', style='margin-top: calc(clamp(40px, 12.78vw, 184px) * -1);') }}
+</section>
+
+
+{# ═══════════════════════════════════════════════════════
+   BENEFITS + PRODUCTS — Figma 94:12
+═══════════════════════════════════════════════════════ #}
+<section id="how-it-works" class="bg-white pt-14 pb-14 sm:pt-[59px] sm:pb-[59px]" aria-label="How it works">
+  <div class="container-home">
+    <h2 class="heading-section max-w-[583px] reveal">Insanely Intuitive To Build &amp; Change.</h2>
+    <p class="mt-6 max-w-[762px] font-sans text-[16px] leading-[28px] text-black sm:mt-5 sm:text-[18px] sm:leading-[32.4px] reveal">
+      You prepared a castle before the game, but the players wanted to go to the forest? Happens all the time.
+      Epochscapes makes it easy to completely shift the scene in minutes. Take your dungeon terrain to a new level.
+      Let your players fight the monster when it's best for the story. Let them find the hidden gold with dynamic
+      scenery. Make unbounded arenas that befit their miniatures. Learn what it feels like to have terrain that
+      makes you more flexible, not less.
     </p>
 
-    <form class="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto"
+    {{ brushMask(
+      src='/images/home-v2/lifestyle-49.jpg',
+      alt='A player in a vine crown reaches across an Epochscapes table mid-session',
+      frame='/images/home-v2/sight-seeing-44.png',
+      frameClass='rotate-180',
+      photoStyle='left:0.625%;top:0;width:98.02%;height:99.86%;',
+      class='reveal mt-4 -mx-5 w-[calc(100%+40px)] aspect-[960/627] sm:mx-auto sm:mt-[2px] sm:w-full sm:max-w-[960px]'
+    ) }}
+
+    <h2 class="heading-section mt-12 text-center sm:mt-[50px] reveal">Modular &amp; Versatile</h2>
+    <p class="mx-auto mt-4 max-w-[579px] text-center font-sans font-medium text-[16px] leading-[28px] text-ink-muted sm:mt-[22px] sm:text-[18px] sm:leading-[32.4px] reveal">
+      Keep your players highly engaged with Epoch Tile's detailed custom pieces while building a tabletop fantasy
+      world from your imagination.
+    </p>
+
+    <div class="mt-8 sm:mt-[22px] reveal" x-data="carousel" @resize.window.debounce.150ms="measure()">
+      <ul x-ref="track" @scroll.debounce.80ms="measure()"
+          class="flex snap-x snap-mandatory gap-[28px] overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          aria-label="Products">
+        {% for p in carousel %}
+          <li class="w-[calc((100%-28px)/2)] shrink-0 snap-start lg:w-[calc((100%-84px)/4)]">
+            <a href="{{ p.slug }}" class="group relative block aspect-square overflow-hidden bg-placeholder"
+               aria-label="{{ p.name }} — {{ p.priceLabel }}">
+              {% if p.card %}
+                <img src="{{ p.card.bg }}" alt="" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" loading="lazy" decoding="async" />
+                <img src="{{ p.card.art }}" alt="" class="absolute left-1/2 top-[8%] h-[64%] w-auto max-w-none -translate-x-1/2 object-contain" loading="lazy" decoding="async" />
+              {% endif %}
+              <span class="absolute inset-x-0 bottom-0 p-3 sm:p-4 {% if p.card %}bg-gradient-to-t from-black/80 to-transparent text-white{% else %}text-ink{% endif %}">
+                <span class="block font-open font-bold uppercase leading-tight text-[12px] sm:text-[14px]">{{ p.name }}</span>
+                <span class="mt-1 block font-sans font-medium text-[12px] sm:text-[13px]">{{ p.priceLabel }}</span>
+              </span>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+
+      <div class="mt-8 flex justify-center gap-[13px] sm:mt-[36px]" x-show="pages > 1" x-cloak>
+        <template x-for="i in pages" :key="i">
+          <button type="button" @click="go(i - 1)" :aria-label="'Show products page ' + i" :aria-current="page === i - 1">
+            <img :src="page === i - 1 ? '/images/home-v2/dot-active.svg' : '/images/home-v2/dot.svg'" alt="" class="block h-[18px] w-[18px]" />
+          </button>
+        </template>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{# ═══════════════════════════════════════════════════════
+   MID CTA — Figma 94:33
+═══════════════════════════════════════════════════════ #}
+<section id="battle-maps" class="relative bg-white" aria-label="Create battle maps">
+  {{ inkDivider('mirror') }}
+
+  <div class="relative -mt-px overflow-hidden bg-black">
+    <img src="/images/home-v2/mid-cta-bg.jpg" alt="" aria-hidden="true"
+         class="absolute inset-0 h-full w-full max-w-none object-cover object-[50%_77%]" loading="lazy" decoding="async" />
+    <div class="absolute inset-0" aria-hidden="true"
+         style="background: linear-gradient(180deg, #000 5.9%, rgba(0,0,0,0.9) 16.5%, rgba(0,0,0,0) 100%);"></div>
+
+    <div class="container-home relative z-10 flex flex-col items-center pt-10 pb-[180px] text-center sm:pt-[58px] sm:pb-[252px]">
+      <h2 class="heading-section max-w-[479px] text-gallery reveal">Create Battle Maps On The Fly</h2>
+      <p class="mt-4 max-w-[645px] font-sans font-medium text-[16px] leading-[28px] text-white sm:mt-[19px] sm:text-[18px] sm:leading-[32.4px] reveal">
+        Keep your players highly engaged with Epoch Tile's detailed custom pieces while building a tabletop fantasy
+        world from your imagination.
+      </p>
+      <a href="/kits" class="btn-cta mt-8 reveal">Shop All Kits</a>
+    </div>
+  </div>
+</section>
+
+
+{# ═══════════════════════════════════════════════════════
+   STAY UPDATED — Figma 94:86
+═══════════════════════════════════════════════════════ #}
+<section id="stay-updated" class="bg-white pt-16 pb-20 sm:pt-[156px] sm:pb-[126px]" aria-label="Stay updated">
+  <div class="container-home">
+    <div class="flex flex-wrap items-center justify-between gap-6">
+      <h2 class="heading-section reveal">Stay Updated</h2>
+      <div class="flex gap-3 reveal" aria-label="Social media links">
+        <a href="{{ social.instagram }}" class="social-btn" aria-label="Epochscapes on Instagram">
+          <img src="/images/home-v2/social-instagram.svg" alt="" class="h-full w-full" />
+        </a>
+        <a href="{{ social.facebook }}" class="social-btn" aria-label="Epochscapes on Facebook">
+          <img src="/images/home-v2/social-facebook-glyph.svg" alt="" class="h-[23px] w-[13px] sm:h-[28.34px] sm:w-[16px]" />
+        </a>
+        <a href="{{ social.youtube }}" class="social-btn" aria-label="Epochscapes on YouTube">
+          <img src="/images/home-v2/social-youtube-glyph.svg" alt="" class="h-[22px] w-[31px] sm:h-[27.35px] sm:w-[38.71px]" />
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-10 bg-alabaster px-4 pt-4 pb-7 sm:mt-[53px] sm:px-[26px] reveal">
+      {% if elfsightAppId %}
+        <script src="https://static.elfsight.com/platform/platform.js" async></script>
+        <div class="elfsight-app-{{ elfsightAppId }}" data-elfsight-app-lazy aria-label="Social media feed"></div>
+      {% else %}
+        <div class="flex items-center gap-3 sm:gap-[17px] sm:pl-[20px]">
+          <img src="/images/home-v2/social-avatar.svg" alt="" aria-hidden="true"
+               class="-my-[11px] -ml-[15px] -mr-[15px] h-[97px] w-[97px] max-w-none" />
+          <div class="min-w-0">
+            <p class="font-sans font-bold uppercase text-ink-deep text-[16px] tracking-[0.8px]">Epochscapes</p>
+            <p class="font-sans font-light text-ink-deep text-[14px] tracking-[0.7px]">@epochscapes</p>
+          </div>
+          <a href="{{ social.instagram }}" class="ml-auto font-kameron font-bold capitalize text-instagram text-[18px] underline sm:mr-[43px]">Follow</a>
+        </div>
+
+        <ul class="mt-[27px] grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-x-[40px] sm:gap-y-[22px]" aria-label="Latest Instagram posts">
+          {% for i in range(0, 6) %}
+            <li class="aspect-square bg-white" data-placeholder="instagram-post"></li>
+          {% endfor %}
+        </ul>
+
+        <div class="mt-[21px] flex justify-center">
+          <a href="{{ social.instagram }}" class="btn-cta font-open">Load More</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+
+{# ═══════════════════════════════════════════════════════
+   JOIN THE ADVENTURE — Figma 94:116
+═══════════════════════════════════════════════════════ #}
+<section id="join" class="relative overflow-hidden bg-white" aria-label="Join the adventure">
+  <div class="absolute inset-x-0 top-[30px] bottom-0" aria-hidden="true">
+    <img src="/images/home-v2/close-cta-bg.jpg" alt="" class="absolute inset-0 h-full w-full max-w-none object-cover object-[50%_84%]" loading="lazy" decoding="async" />
+    <div class="absolute inset-0" style="background: linear-gradient(180deg, #fff 20%, rgba(255,255,255,0.4) 70%);"></div>
+  </div>
+  {{ inkDivider('mirror', tall=true, class='absolute inset-x-0 bottom-0') }}
+
+  <div class="container-home relative z-10 pt-[33px] pb-[150px] sm:pb-[220px] lg:flex lg:items-start lg:justify-between">
+    <div class="lg:pl-[11px]">
+      <h2 class="heading-display max-w-[558px] text-black reveal">Join The Adventure</h2>
+      <p class="mt-5 max-w-[411px] font-sans font-medium text-[16px] leading-[23.8px] text-ink-muted sm:mt-[27px] sm:text-[18px] reveal">
+        Stay in touch to be the first to know about future product launches and other great things from Epoch!
+      </p>
+    </div>
+
+    <form class="mt-8 flex w-full flex-col gap-5 sm:gap-[33px] lg:mt-0 lg:mr-[45px] lg:w-[485px] reveal"
+          style="--reveal-delay: 120ms"
           onsubmit="event.preventDefault(); alert('Email signup coming soon!')">
-      <label for="adventure-email" class="sr-only">Email address</label>
-      <input
-        id="adventure-email"
-        type="email"
-        name="email"
-        placeholder="Your email address"
-        required
-        class="flex-1 px-4 py-3.5 bg-white/10 border border-white/25 text-white text-sm font-sans
-               placeholder-white/40
-               focus:outline-none focus:border-white/60 focus:bg-white/15 transition-colors"
-      />
-      <button type="submit" class="btn-cta py-3.5 px-6 shrink-0">Join Now</button>
+      <div class="field-inline">
+        <label for="join-name">Name:</label>
+        <input id="join-name" type="text" name="name" autocomplete="name" />
+      </div>
+      <div class="field-inline">
+        <label for="join-email">Email:</label>
+        <input id="join-email" type="email" name="email" autocomplete="email" required />
+      </div>
+      <button type="submit"
+              class="h-[57px] w-full font-open font-bold text-[20px] uppercase text-white transition-[filter] hover:brightness-110"
+              style="background-image: linear-gradient(-83.3deg, #be2e17 0%, #ee4d20 100%);">
+        Subscribe
+      </button>
     </form>
   </div>
 </section>
 
+{% endblock %}
+
+{% block scripts %}
+<script>
+  document.addEventListener('alpine:init', function () {
+    Alpine.data('carousel', function () {
+      return {
+        page: 0,
+        pages: 1,
+        perPage: 1,
+        init: function () { this.$nextTick(() => this.measure()); },
+        step: function () {
+          var first = this.$refs.track.children[0];
+          var gap = parseFloat(getComputedStyle(this.$refs.track).columnGap) || 0;
+          return first ? first.offsetWidth + gap : 0;
+        },
+        measure: function () {
+          var track = this.$refs.track;
+          var step = this.step();
+          if (!step) return;
+          var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+          this.perPage = Math.max(1, Math.round((track.clientWidth + gap) / step));
+          this.pages = Math.ceil(track.children.length / this.perPage);
+          this.page = Math.min(this.pages - 1, Math.round(track.scrollLeft / (step * this.perPage)));
+        },
+        go: function (i) {
+          this.$refs.track.scrollTo({ left: i * this.step() * this.perPage, behavior: 'smooth' });
+        },
+      };
+    });
+  });
+</script>
 {% endblock %}

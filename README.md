@@ -51,10 +51,13 @@ src/
 │   ├── index.njk        # Homepage — all sections
 │   ├── stub.njk         # Placeholder for future interior pages
 │   └── partials/
-│       ├── header.njk        # Fixed nav (Alpine.js mobile menu)
-│       ├── footer.njk        # Footer with address and nav links
+│       ├── header.njk        # Overlay nav over the hero (Alpine.js dropdowns + mobile menu)
+│       ├── footer.njk        # Slim Figma footer: links, address, payment icons
+│       ├── ink-divider.njk   # inkDivider() macro — black ink-bleed section seams
+│       ├── brush-mask.njk    # brushMask() macro — photo framed by a white brush-stroke PNG
 │       └── product-grid.njk  # HTMX partial — product card grid
 └── public/
+    ├── images/home-v2/  # Figma Home-v2 exports (photos, kit art, ink/brush overlays, icons)
     └── css/
         └── style.css    # Compiled Tailwind output (git-ignored)
 tailwind.config.js
@@ -64,21 +67,22 @@ tailwind.config.js
 
 ## Homepage Sections
 
-1. **Hero** — "Build Your Next Great Adventure" headline, CTA buttons, decorative tile grid
-2. **Category split** — Kits card / Tiles card with distinct styling
-3. **Feature trio** — Double-Sided Tiles · Magnetic Connection · Modular Terrain
-4. **Story block 1** — "Insanely Intuitive to Build (And Change)"
-5. **Products** — HTMX-filtered product grid (All / Kits / Tiles / Accessories tabs)
-6. **CTA banner** — "Create Battle Maps on the Fly"
-7. **Story block 2** — "Craft Immersive Scenes Fast" + biome showcase grid
-8. **FAQ** — Alpine.js accordion, 5 common questions
-9. **Footer** — Address · Shop links · Legal
+1. **Hero + CTA bar** — "Build Your Next Great Adventure" over the hero photo, with a floating Kits / Tiles / Terrain / Shop tile bar
+2. **Features** — "Landscapes as Diverse as Your Imagination", brush-masked POV photo, and a card with Double-Sided Tiles · Magnetic Connection · Modular Terrain
+3. **Explore Our Kits** — black band between ink seams with the four kit package cards
+4. **Benefits + Modular carousel** — "Insanely Intuitive to Build & Change", brush-masked lifestyle photo, and an Alpine scroll-snap product carousel
+5. **Mid CTA** — "Create Battle Maps on the Fly"
+6. **Stay Updated** — social buttons and an Instagram feed card (Elfsight widget when `ELFSIGHT_APP_ID` is set, placeholder grid otherwise)
+7. **Join the Adventure** — name + email signup (submit is stubbed)
+8. **Footer** — Terms · Returns · Privacy · Contact · Account · Cart, address, payment icons
+
+Social profile URLs live in `src/server.js` (`social`) and are placeholders until the real handles are confirmed.
 
 ---
 
 ## HTMX Usage
 
-The product filter tabs use HTMX to swap the grid partial:
+The homepage no longer shows the filter gallery (Figma Home-v2 has none), but the partial route is kept for the upcoming shop pages. Filter tabs swap the grid like this:
 
 ```html
 <button
@@ -106,9 +110,16 @@ Wiring the real storefront is **out of scope for this PR** but the hooks are in 
 
 ## Design
 
-Reference: Figma `ZS7IbTXovclmwq3ixg08B7` node `22-62` (access required).  
-Fallback: live site https://epochscapes.com was used for structure, copy, and section order.  
-Visual theme: dark navy/charcoal background, Cinzel display font, gold `#c9a227` accent, CSS-only product thumbnails pending real product photography.
+Reference: Figma [Epochscapes Site Design v4 — Home-v2](https://www.figma.com/design/ZS7IbTXovclmwq3ixg08B7/Epochscapes-Site-Design-v4?node-id=22-62) (node `22:62`, 1440px frame, 1060px content column).
+
+| Token | Value |
+|---|---|
+| Fonts | Montserrat (headings, body) · Open Sans (nav, labels, footer) · Roboto Bold (buttons) · Kameron ("Follow") |
+| Green | `#509041` → `#335f28` gradient (active CTA tile, social buttons) |
+| Red | `#be2e17` → `#ee4d20` gradient (all CTA buttons) |
+| Neutrals | Ink `#333`, muted `#666`, gallery `#efefef`, alabaster `#f7f7f7` |
+
+All imagery comes from Figma exports in `src/public/images/home-v2/`. Section seams use `fade-transition-black.png` through the `inkDivider()` macro (`mirror` for light→dark, `flip` for dark→light); photo frames use the `sight-seeing-44/45` brush PNGs through `brushMask()`.
 
 ---
 
@@ -119,6 +130,6 @@ Visual theme: dark navy/charcoal background, Cinzel display font, gold `#c9a227`
 | Server | Express 4 |
 | Templates | Nunjucks 3 |
 | Styles | Tailwind CSS 3 (compiled) |
-| Interactivity | HTMX 1.9 (partials), Alpine.js 3 (mobile nav, FAQ accordion) |
+| Interactivity | HTMX 1.9 (partials), Alpine.js 3 (nav dropdowns, mobile menu, carousel) |
 | Runtime | Node.js ≥ 18 |
 | Package manager | pnpm (or npm) |

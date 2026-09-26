@@ -10,12 +10,13 @@ const app  = express();
 const PORT = process.env.PORT || 3000;
 
 /* ── Template engine ──────────────────────────────────────── */
-nunjucks.configure(path.join(__dirname, 'views'), {
+const env = nunjucks.configure(path.join(__dirname, 'views'), {
   autoescape:  true,
   express:     app,
   watch:       process.env.NODE_ENV !== 'production',
   noCache:     process.env.NODE_ENV !== 'production',
 });
+env.addGlobal('currentYear', () => new Date().getFullYear());
 
 /* ── Static assets ───────────────────────────────────────── */
 app.use(express.static(path.join(__dirname, 'public')));
@@ -34,11 +35,20 @@ function stub(page, opts = {}) {
 
 /* ── Routes ──────────────────────────────────────────────── */
 
+// TODO: replace '#' with real profile URLs when Brad supplies them
+const social = {
+  instagram: '#',
+  facebook:  '#',
+  youtube:   '#',
+};
+
 // Homepage
 app.get('/', (req, res) => {
   res.render('index.njk', {
     title:         'Epochscapes — Magnetic Dungeon Tiles & Modular Terrain',
-    products:      products.featured,
+    kits:          products.homeKits,
+    carousel:      products.all,
+    social,
     elfsightAppId: process.env.ELFSIGHT_APP_ID || null,
   });
 });
@@ -98,6 +108,12 @@ app.get('/legal/terms',       stub('Terms of Service',    { backHref: '/', backL
 
 app.get('/about', stub('About', {
   description: 'Learn the story behind Epoch Possibilities LLC and the Epochscapes terrain system.',
+  backLabel: '← Back to home',
+  backHref: '/',
+}));
+
+app.get('/account', stub('Account', {
+  description: 'Order history and saved details will live here once the store is connected.',
   backLabel: '← Back to home',
   backHref: '/',
 }));

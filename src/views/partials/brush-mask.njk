@@ -1,0 +1,16 @@
+{#
+  Photo framed by a white brush-stroke overlay (sight-seeing-44 / -45 from Figma).
+  The frame PNG is white paint around a transparent hole, so it sits on top of
+  the photo and blends into the white section behind it.
+
+  photoStyle positions the photo inside the frame box as percentages, copied
+  from the Figma layer offsets so the paint edge lands where the design has it.
+  Content passed via {% call %} renders above the frame (e.g. a CTA button).
+#}
+{% macro brushMask(src, alt, frame, frameClass='', photoStyle='inset:0;width:100%;height:100%;', class='', style='') %}
+<div class="brush-mask {{ class }}" style="{{ style }}">
+  <img src="{{ src }}" alt="{{ alt }}" class="brush-mask-photo" style="{{ photoStyle }}" loading="lazy" decoding="async" />
+  <img src="{{ frame }}" alt="" aria-hidden="true" class="brush-mask-frame {{ frameClass }}" loading="lazy" decoding="async" />
+  {% if caller %}{{ caller() }}{% endif %}
+</div>
+{% endmacro %}

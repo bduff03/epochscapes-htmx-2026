@@ -7,8 +7,13 @@
   html { scroll-behavior: smooth; }
 
   body {
-    @apply bg-white text-[#333333] font-sans antialiased;
+    @apply bg-white text-ink font-sans antialiased;
   }
+
+  [x-cloak] { display: none !important; }
+
+  /* Figma art bleeds past the content column; clip instead of scrolling sideways */
+  main { overflow-x: clip; }
 
   *:focus-visible {
     @apply outline-none ring-2 ring-brand-green ring-offset-2 ring-offset-white;
@@ -22,122 +27,163 @@
 /* ─── Components ─────────────────────────────────────────── */
 @layer components {
 
-  /* ── Layout container ── */
-  .container-site {
-    @apply mx-auto w-full max-w-container px-5 sm:px-8 lg:px-[60px];
+  /* ── Layout: Figma content column is 1060px (x 190 → 1250 on a 1440 frame) ── */
+  .container-home {
+    @apply mx-auto w-full px-5 sm:px-8;
+    max-width: calc(1060px + 4rem);
   }
 
-  /* ── Primary CTA button — coral red ── */
+  /* ── Primary CTA — Thunderbird → Pomegranate, hard edges, soft drop shadow ── */
   .btn-cta {
-    @apply inline-flex items-center justify-center gap-2.5
-           px-8 py-4
-           bg-brand-red text-white
-           font-sans font-bold text-[13px] tracking-[0.1em] uppercase
-           rounded-[4px]
-           shadow-[0_2px_8px_rgba(231,76,60,0.3)]
-           transition-all duration-200
-           hover:bg-brand-red-dark hover:shadow-[0_4px_16px_rgba(231,76,60,0.4)]
-           active:scale-[0.98]
-           focus-visible:ring-brand-red;
+    @apply inline-flex items-center justify-center whitespace-nowrap
+           px-[30px] py-[10px]
+           font-roboto font-bold text-[16px] leading-[27.2px] uppercase text-white
+           transition-[filter,transform] duration-200 ease-out;
+    background-image:
+      linear-gradient(30deg, rgba(190, 46, 23, 0) 30%, #ee4d20 100%),
+      linear-gradient(90deg, #be2e17 0%, #be2e17 100%);
+    filter: drop-shadow(6px 6px 9px rgba(0, 0, 0, 0.3));
+  }
+  .btn-cta:hover {
+    transform: translateY(-2px);
+    filter: drop-shadow(8px 10px 12px rgba(0, 0, 0, 0.35)) brightness(1.08);
+  }
+  .btn-cta:active { transform: translateY(0) scale(0.98); }
+  .btn-cta:focus-visible { @apply ring-brand-red; }
+
+  /* ── Type ── */
+  .heading-display {
+    @apply font-sans font-bold uppercase
+           text-[36px] leading-[38px] sm:text-[52px] sm:leading-[50px];
+  }
+  .heading-section {
+    @apply font-sans font-bold uppercase text-ink
+           text-[28px] leading-[32px] sm:text-[38px] sm:leading-[40px];
+  }
+  .body-lead {
+    @apply font-sans font-medium text-[16px] leading-[28px] sm:text-[18px] sm:leading-[30px];
   }
 
-  /* Ghost on dark bg */
-  .btn-outline-light {
-    @apply inline-flex items-center justify-center gap-2.5
-           px-8 py-4
-           border-2 border-white text-white
-           font-sans font-bold text-[13px] tracking-[0.1em] uppercase
-           rounded-[4px]
-           transition-all duration-200
-           hover:bg-white hover:text-[#000000]
-           active:scale-[0.98];
-  }
-
-  /* ── Navigation ── */
+  /* ── Header nav ── */
   .nav-item {
-    @apply text-[13px] font-sans font-semibold tracking-[0.08em] uppercase
-           text-white/80 transition-colors duration-200 hover:text-white
-           flex items-center gap-1;
+    @apply flex items-center gap-1 font-open font-bold text-[18px] leading-[14px] uppercase text-white
+           transition-opacity duration-200 hover:opacity-75;
+  }
+  .nav-menu-link {
+    @apply block px-4 py-2.5 font-open font-semibold text-[13px] uppercase tracking-wide text-ink
+           transition-colors hover:bg-alabaster hover:text-brand-green;
   }
 
-  /* ── Section eyebrows ── */
-  .section-eyebrow {
-    @apply block text-[11px] font-sans font-bold tracking-[0.25em] uppercase
-           text-brand-green mb-3;
+  /* ── Ink bleed seam (fade-transition-black) ──
+     Height tracks the Figma 1440 frame: 264px there, never thinner than 96px. */
+  .ink-divider {
+    @apply relative w-full pointer-events-none select-none;
+    height: clamp(96px, 18.333vw, 264px);
   }
-  .section-eyebrow-light {
-    @apply block text-[11px] font-sans font-bold tracking-[0.25em] uppercase
-           text-white/50 mb-3;
+  .ink-divider--tall {
+    height: clamp(110px, 22.29vw, 321px);
   }
-
-  /* ── Headings (Montserrat ExtraBold, ALL CAPS) ── */
-  .heading-dark {
-    @apply font-sans font-extrabold text-[#1a1a1a] uppercase
-           leading-[1.08] tracking-[-0.01em]
-           text-[1.875rem] sm:text-[2.375rem] lg:text-[2.625rem];
-  }
-  .heading-light {
-    @apply font-sans font-extrabold text-white uppercase
-           leading-[1.08] tracking-[-0.01em]
-           text-[1.875rem] sm:text-[2.375rem] lg:text-[2.625rem];
-  }
-  .subheading-dark {
-    @apply font-sans font-bold text-[#1a1a1a] uppercase
-           tracking-[0.06em] text-lg sm:text-xl;
+  .ink-divider > img {
+    @apply absolute inset-0 block h-full w-full max-w-none;
+    object-fit: fill;
   }
 
-  /* ── Category nav buttons (hero) ── */
-  .cat-btn {
-    @apply flex flex-col items-center justify-center gap-2
-           w-[110px] sm:w-[130px] lg:w-[140px] py-5
-           bg-white text-[#000000]
-           border-r border-zinc-200 last:border-r-0
-           transition-colors duration-150
-           hover:bg-zinc-50 cursor-pointer select-none;
+  /* ── Brush-stroke photo frame (sight-seeing-44 / -45 over a photo) ── */
+  .brush-mask {
+    @apply relative;
   }
-  .cat-btn-icon {
-    @apply w-7 h-7 text-[#b0b0b0];
+  .brush-mask-photo {
+    @apply absolute block max-w-none object-cover;
   }
-  .cat-btn.active .cat-btn-icon,
-  .cat-btn[aria-selected="true"] .cat-btn-icon {
-    @apply text-white;
-  }
-  .cat-btn.active,
-  .cat-btn[aria-selected="true"] {
-    @apply bg-brand-green text-white;
-  }
-  .cat-btn.active svg,
-  .cat-btn[aria-selected="true"] svg {
-    @apply text-white;
-  }
-  .cat-btn-label {
-    @apply text-[11px] font-sans font-bold tracking-[0.16em] uppercase;
+  .brush-mask-frame {
+    @apply pointer-events-none absolute inset-0 block h-full w-full max-w-none select-none;
+    object-fit: fill;
   }
 
-  /* ── Feature blocks ── */
-  .feature-block {
-    @apply flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-5;
+  /* ── Hero CTA bar tiles ── */
+  .cta-tile {
+    @apply flex flex-col items-center justify-end gap-2 bg-white pb-3 text-black
+           w-[74px] h-[84px] sm:w-[126px] sm:h-[122px] sm:gap-3 sm:pb-[18px]
+           transition-colors duration-200 hover:bg-alabaster;
   }
-  .feature-icon-green {
-    @apply w-12 h-12 text-brand-green shrink-0;
+  .cta-tile-icon {
+    @apply block h-[34px] w-auto sm:h-[52px] transition-transform duration-300 ease-out;
+  }
+  .cta-tile:hover .cta-tile-icon { transform: translateY(-3px); }
+  .cta-tile-label {
+    @apply font-sans font-bold uppercase text-[10px] leading-[14.4px] sm:text-[12px];
+  }
+  .cta-tile--active {
+    @apply text-white hover:bg-transparent;
+    background-image: linear-gradient(226deg, #509041 0%, #335f28 100%);
+  }
+
+  /* ── Feature card (Features section) ── */
+  .feature-item {
+    @apply flex flex-col items-center text-center;
   }
   .feature-title {
-    @apply font-sans font-bold text-[#1a1a1a] text-[1.1rem] tracking-[0.04em] uppercase mb-1;
+    @apply mt-6 pb-2.5 font-sans font-bold uppercase text-ink text-[20px] leading-[20px] sm:mt-8;
   }
   .feature-body {
-    @apply text-[#666666] text-[15px] leading-[1.75];
+    @apply max-w-[405px] font-sans font-medium text-[14px] leading-[23px] text-ink-muted;
   }
 
-  /* ── Product cards (dark bg) ── */
-  .product-card-dark {
-    @apply bg-zinc-950 border border-zinc-800/70 overflow-hidden
-           rounded-[3px]
-           transition-all duration-300 cursor-pointer
-           hover:border-brand-green/50 hover:shadow-[0_0_28px_rgba(74,124,89,0.18)]
-           hover:-translate-y-0.5;
+  /* ── Kit cards (Explore) ── */
+  .kit-card {
+    @apply relative block overflow-hidden bg-black;
+    aspect-ratio: 251.28 / 346;
+  }
+  .kit-card-bg {
+    @apply absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out;
+  }
+  .kit-card-art {
+    @apply absolute block max-w-none object-contain transition-transform duration-500 ease-out;
+  }
+  .kit-card:hover .kit-card-bg { transform: scale(1.05); }
+  .kit-card:hover .kit-card-art { transform: translateY(-8px); }
+  .kit-card-name {
+    @apply absolute bottom-[6%] left-[16.5%] pr-3 font-open font-bold uppercase text-white
+           text-[14px] leading-[15px] sm:text-[20px] sm:leading-[20px];
+  }
+  .kit-card-name::before {
+    content: '';
+    @apply absolute top-0 h-full w-1 bg-brand-green-light -left-[14px] sm:-left-[20px];
   }
 
-  /* Product gradient thumbnails */
+  /* ── Social buttons (Stay Updated) ── */
+  .social-btn {
+    @apply grid h-[44px] w-[44px] place-items-center sm:h-[55px] sm:w-[55px]
+           transition-transform duration-200 hover:-translate-y-0.5;
+    background-image: linear-gradient(135deg, #509041 0%, #335f28 100%);
+  }
+
+  /* ── Close CTA form fields (label inline, Figma "Name:" / "Email:") ── */
+  .field-inline {
+    @apply flex h-[57px] w-full items-center gap-3 bg-alabaster px-[19px]
+           focus-within:ring-2 focus-within:ring-brand-green;
+  }
+  .field-inline label {
+    @apply shrink-0 font-open font-bold text-[18px] uppercase text-ink sm:text-[20px];
+  }
+  .field-inline input {
+    @apply h-full min-w-0 flex-1 bg-transparent font-sans text-[16px] text-ink
+           placeholder:text-ink-muted/60 focus:outline-none;
+  }
+
+  /* ── Scroll reveal (only armed when JS is running) ── */
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .js .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── Product grid partial (HTMX route, shop pages) ── */
   .thumb-kits {
     @apply bg-gradient-to-br from-amber-900/70 via-stone-900/60 to-zinc-950;
   }
@@ -147,8 +193,6 @@
   .thumb-accessories {
     @apply bg-gradient-to-br from-emerald-900/60 via-teal-900/40 to-zinc-950;
   }
-
-  /* ── Filter tabs (product gallery) ── */
   .filter-btn {
     @apply px-4 py-2 text-[10px] font-sans font-bold tracking-widest uppercase
            bg-zinc-100 text-zinc-600 transition-colors
@@ -156,14 +200,6 @@
   }
   .filter-btn-active {
     @apply bg-[#000000] text-white;
-  }
-
-  /* ── Body copy helpers ── */
-  .body-dark {
-    @apply text-[#666666] text-[16px] sm:text-[17px] leading-[1.8];
-  }
-  .body-light {
-    @apply text-white/60 text-[16px] sm:text-[17px] leading-[1.8];
   }
 
   /* ── HTMX loading indicator ── */
@@ -176,4 +212,11 @@
   .htmx-request.htmx-indicator {
     @apply opacity-100;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .animate-fade-up { animation: none; }
+  .btn-cta, .kit-card-bg, .kit-card-art, .cta-tile-icon, .social-btn { transition: none; }
 }

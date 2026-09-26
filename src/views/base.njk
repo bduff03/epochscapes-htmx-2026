@@ -5,11 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Epochscapes — Magnetic dungeon tiles & modular TTRPG terrain. Build your next great adventure." />
   <title>{{ title or "Epochscapes — Magnetic Dungeon Tiles" }}</title>
+  <script>document.documentElement.classList.add('js');</script>
 
-  <!-- Google Fonts: Montserrat (confirmed font from live site + Figma) -->
+  <!-- Figma Home-v2 type: Montserrat (headings/body), Open Sans (nav/labels), Roboto (buttons), Kameron (Follow link) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Kameron:wght@700&family=Montserrat:wght@300;400;500;700;800&family=Open+Sans:wght@400;600;700&family=Roboto:wght@700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 5 brands — footer payment icons are FA glyphs in Figma -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css" />
 
   <!-- Tailwind (compiled) -->
   <link rel="stylesheet" href="/css/style.css" />
@@ -17,7 +22,7 @@
   <!-- HTMX -->
   <script src="https://unpkg.com/htmx.org@1.9.11" defer></script>
 
-  <!-- Alpine.js (mobile nav, FAQ accordion) -->
+  <!-- Alpine.js (nav dropdowns, mobile menu, carousel) -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
   {% block head %}{% endblock %}
@@ -31,6 +36,25 @@
   </main>
 
   {% include "partials/footer.njk" %}
+
+  <script>
+    (function () {
+      var items = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        items.forEach(function (el) { el.classList.add('is-visible'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -10% 0px' });
+      items.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
 
   {% block scripts %}{% endblock %}
 </body>

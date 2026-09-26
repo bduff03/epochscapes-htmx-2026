@@ -1,0 +1,18 @@
+{#
+  Ink-bleed seam from Figma (fade-transition-black). The source PNG is black at
+  the bottom, transparent at the top. `orient` mirrors it the way each Figma
+  instance does:
+    'mirror' — horizontal flip, black at the bottom (light → dark seams)
+    'flip'   — vertical flip, black at the top (dark → light seams)
+#}
+{% macro inkDivider(orient='mirror', tall=false, class='', style='') %}
+<div class="ink-divider{% if tall %} ink-divider--tall{% endif %} {{ class }}" style="{{ style }}" aria-hidden="true">
+  <img
+    src="/images/home-v2/fade-transition-black.png"
+    alt=""
+    class="{% if orient == 'flip' %}-scale-y-100{% else %}-scale-x-100{% endif %}"
+    loading="lazy"
+    decoding="async"
+  />
+</div>
+{% endmacro %}

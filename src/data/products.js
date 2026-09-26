@@ -3,6 +3,35 @@
 // Mock product catalogue — replace with Hostinger Storefront API later.
 // TODO: wire up Hostinger Ecommerce API (catalog sync + checkout redirect)
 
+// Kit card art from Figma Home-v2 "Explore" (node 94:10). artStyle places the
+// product render inside the 251×346 card, as percentages of the card box.
+const kitCard = {
+  'ancient-woodlands-kit': {
+    bg:        '/images/home-v2/kit-bg-woodlands.jpg',
+    art:       '/images/home-v2/kit-woodlands.png',
+    artStyle:  'left:12.66%;top:7.51%;width:74.69%;height:67.34%;',
+    nameLines: ['Ancient', 'Woodlands'],
+  },
+  'crystal-caverns-kit': {
+    bg:        '/images/home-v2/kit-bg-caverns.jpg',
+    art:       '/images/home-v2/kit-caverns.png',
+    artStyle:  'left:13.47%;top:7.51%;width:73.47%;height:70.52%;',
+    nameLines: ['Crystal', 'Caverns'],
+  },
+  'hidden-temple-kit': {
+    bg:        '/images/home-v2/kit-bg-temple.jpg',
+    art:       '/images/home-v2/kit-temple.png',
+    artStyle:  'left:31.02%;top:11.27%;width:41.22%;height:63.01%;',
+    nameLines: ['Hidden', 'Temple'],
+  },
+  'endless-sands-kit': {
+    bg:        '/images/home-v2/kit-bg-sands.jpg',
+    art:       '/images/home-v2/kit-sands.png',
+    artStyle:  'left:31.02%;top:7.51%;width:38.37%;height:68.5%;',
+    nameLines: ['Endless', 'Sands'],
+  },
+};
+
 const products = {
 
   featured: [
@@ -99,6 +128,18 @@ const products = {
   all: [], // populated below
 };
 
+products.featured.forEach(p => {
+  if (kitCard[p.id]) p.card = kitCard[p.id];
+});
+
 products.all = [...products.featured];
+
+// Figma "Explore Our Kits" order, left to right
+products.homeKits = [
+  'ancient-woodlands-kit',
+  'crystal-caverns-kit',
+  'hidden-temple-kit',
+  'endless-sands-kit',
+].map(id => products.all.find(p => p.id === id));
 
 module.exports = products;
