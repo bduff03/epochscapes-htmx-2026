@@ -102,16 +102,16 @@
 
   /* ── Hero CTA bar tiles ── */
   .cta-tile {
-    @apply flex flex-col items-center justify-end gap-2 bg-white pb-3 text-black
-           w-[74px] h-[84px] sm:w-[126px] sm:h-[122px] sm:gap-3 sm:pb-[18px]
+    @apply flex flex-col items-center justify-end gap-[7px] bg-white pb-[10px] text-black
+           w-[63px] h-[71px] sm:w-[107px] sm:h-[104px] sm:gap-[10px] sm:pb-[15px]
            transition-colors duration-200 hover:bg-alabaster;
   }
   .cta-tile-icon {
-    @apply block h-[34px] w-auto sm:h-[52px] transition-transform duration-300 ease-out;
+    @apply block h-[29px] w-auto sm:h-[44px] transition-transform duration-300 ease-out;
   }
   .cta-tile:hover .cta-tile-icon { transform: translateY(-3px); }
   .cta-tile-label {
-    @apply font-sans font-bold uppercase text-[10px] leading-[14.4px] sm:text-[12px];
+    @apply font-sans font-bold uppercase text-[9px] leading-[12px] sm:text-[10px];
   }
   .cta-tile--active {
     @apply text-white hover:bg-transparent;
